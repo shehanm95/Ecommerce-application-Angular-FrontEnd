@@ -1,0 +1,20 @@
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="login-container">
+        <h2>Registration</h2>
+        <form #f=ngForm (submit)="submitRegistrationForm(f)">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" ngModel id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="role">Role</label>
+                <input type="text" ngModel id="role" name="role" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" ngModel id="password" name="password" required>
+                <button type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+</div>

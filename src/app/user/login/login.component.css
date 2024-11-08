@@ -1,0 +1,138 @@
+/* CSS for login form */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #f4f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transform: translateY(-20px);
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.login-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.input-group label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #0056b3;
+}
+
+.forgot-password {
+    text-align: right;
+    font-size: 12px;
+}
+
+.forgot-password a {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+.login-actions {
+    text-align: center;
+}
+
+.login-actions button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-actions button:hover {
+    background-color: #004085;
+}
+
+.no-account {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.no-account a {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.no-account a:hover {
+    text-decoration: underline;
+}
+
+/* Animation for login form */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 576px) {
+    .login-container {
+        padding: 15px;
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .login-box h2 {
+        font-size: 20px;
+    }
+
+    .input-group input {
+        font-size: 14px;
+    }
+
+    .login-actions button {
+        font-size: 14px;
+    }
+}
