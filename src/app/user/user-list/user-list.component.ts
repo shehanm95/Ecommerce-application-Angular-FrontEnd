@@ -18,7 +18,9 @@ export class UserListComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.userList = this.userService.getAllUsers();
+    this.userList = this.userService.getAllUsers()
+
+
   }
 
 }

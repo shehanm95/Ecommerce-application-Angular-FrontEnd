@@ -21,15 +21,18 @@ export const AuthGard: CanActivateFn = (route, state) => {
 export const AdminGard: CanActivateFn = (route, state) => {
 
   const storageService = inject(LocalStorageService);
+  const toastr = inject(ToastrService)
   const router = inject(Router);
   const user = storageService.getUser();
   if (user != null) {
-    if (user.role == "ADMIN") {
+    if (user.userRole == "ADMIN") {
       return true;
     } else {
+      toastr.error("That Area only allowed to admins.", "Restricted Page")
       return false;
     }
   } else {
+    toastr.error("This page is exclusive to registered users.", "Please Sign in")
     return false;
   }
 }
@@ -37,15 +40,18 @@ export const AdminGard: CanActivateFn = (route, state) => {
 export const SellerGuard: CanActivateFn = (route, state) => {
 
   const storageService = inject(LocalStorageService);
+  const toastr = inject(ToastrService)
   const router = inject(Router);
   const user = storageService.getUser();
   if (user != null) {
-    if (user.role == "ADMIN" || user.role == "SELLER") {
+    if (user.userRole == "SELLER") {
       return true;
     } else {
+      toastr.error("That Area only allowed to sellers.", "Restricted Page")
       return false;
     }
   } else {
+    toastr.error("This page is exclusive to registered users.", "Please Sign in")
     return false;
   }
 }
@@ -55,13 +61,16 @@ export const BuyerGuard: CanActivateFn = (route, state) => {
   const storageService = inject(LocalStorageService);
   const router = inject(Router);
   const user = storageService.getUser();
+  const toastr = inject(ToastrService)
   if (user != null) {
-    if (user.role == "ADMIN" || user.role == "BUYER") {
+    if (user.userRole == "BUYER") {
       return true;
     } else {
+      toastr.error("That Area only allowed to buyers.", "Restricted Page")
       return false;
     }
   } else {
+    toastr.error("This page is exclusive to registered users.", "Please Sign in")
     return false;
   }
 }

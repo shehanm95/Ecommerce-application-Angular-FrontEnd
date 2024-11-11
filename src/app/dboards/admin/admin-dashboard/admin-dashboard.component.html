@@ -1,0 +1,74 @@
+<div class="adminDashboard container mt-5 d-flex">
+    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light vh-100" style="width: 280px;">
+        <a routerLink="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="32">
+                <use xlink:routerLink="#bootstrap"></use>
+            </svg>
+            <span class="fs-4">Admin Features</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li>
+                <a routerLink="/admin/dashboard" class="nav-link link-dark">
+                    <i class="bi bi-speedometer me-2"></i>
+                    Statics
+                </a>
+            </li>
+            <li>
+                <a routerLink="/admin/dashboard/messages" class="nav-link link-dark">
+                    <i class="bi bi-envelope me-2"></i>
+                    Messages
+                </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/admin/dashboard/products" class="nav-link active" aria-current="page">
+                    <i class="bi bi-grid-fill me-2"></i>
+                    My Products
+                </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/admin/dashboard/reportings" class="nav-link active" aria-current="page">
+                    <i class="bi bi-exclamation-circle-fill me-2"></i>
+                    Reportings
+                </a>
+            </li>
+            <li>
+                <a routerLink="/admin/dashboard/orders" class="nav-link link-dark">
+                    <i class="bi bi-card-checklist me-2"></i>
+                    Orders
+                </a>
+            </li>
+            <li>
+                <a routerLink="#" class="nav-link link-dark">
+                    <i class="bi bi-box2-fill me-2"></i>
+                    Add Products
+                </a>
+            </li>
+            <li>
+                <a routerLink="/admin/dashboard/users" class="nav-link link-dark">
+                    <i class="bi bi-people-fill me-2"></i>
+                    Users
+                </a>
+            </li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+            <a routerLink="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+                id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>mdo</strong>
+            </a>
+            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                <li><a class="dropdown-item" routerLink="#">New project...</a></li>
+                <li><a class="dropdown-item" routerLink="#">Settings</a></li>
+                <li><a class="dropdown-item" routerLink="#">Profile</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" routerLink="#">Sign out</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mt-5"><router-outlet></router-outlet></div>
+</div>

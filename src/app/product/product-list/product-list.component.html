@@ -1,3 +1,4 @@
 <p>product-list works!</p>
-
-<h1 *ngFor="let product of products |async"> {{product.name}}</h1>
+<div class="mt-5 pt-5 container d-flex justify-content-around flex-wrap align-items-center">
+    <app-product-card *ngFor="let product of products |async" [product]="product"></app-product-card>
+</div>

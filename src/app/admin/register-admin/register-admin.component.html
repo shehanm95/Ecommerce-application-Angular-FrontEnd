@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <!-- Registration Page HTML -->
+    <div class="register-container mt-5">
+        <div class="register-box">
+            <h2>Register As Admin</h2>
+            <form #f="ngForm" (submit)="submitRegistrationForm(f)">
+                <div class="d-flex">
+                    <div class="input-group me-2">
+                        <label for="firstName">First Name</label>
+                        <input type="text" ngModel id="firstName" name="firstName" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" ngModel id="lastName" name="lastName" required>
+                    </div>
+
+                </div>
+
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" ngModel id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" ngModel id="email" name="email" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" ngModel id="phone" name="phone" required>
+                </div>
+                <div class="input-group d-none mb-3">
+                    <label for="role">Role</label>
+                    <input type="text" [(ngModel)]="roleValue" id="role" name="role" class="form-control" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="adminPassword">Admin Password</label>
+                    <input type="password" ngModel id="adminPassword" name="adminPassword" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" ngModel id="password" name="password" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" ngModel id="confirmPassword" name="confirmPassword" required>
+                </div>
+
+                <div class="register-actions">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+
+                <div class="have-account">
+                    <p>Already have an account? <a routerLink="/login">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,20 +1,95 @@
 <div class="d-flex justify-content-center align-items-center vh-100">
-    <div class="login-container">
-        <h2>Registration</h2>
-        <form #f=ngForm (submit)="submitRegistrationForm(f)">
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" ngModel id="username" name="username" required>
-            </div>
-            <div class="input-group">
-                <label for="role">Role</label>
-                <input type="text" ngModel id="role" name="role" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" ngModel id="password" name="password" required>
-                <button type="submit">Login</button>
-            </div>
-        </form>
+
+    <div *ngIf="!selected" class="roleSelector col-md-6">
+        <h2 class="text-center">
+            I need to register As a....
+        </h2>
+        <div class="role-buttons d-flex justify-content-between mt-5">
+            <button type="button" class="role-btn" (click)="buyerSelected(true)">Buyer</button>
+            <button type="button" class="role-btn" (click)="buyerSelected(false)">Seller</button>
+        </div>
+        <div class="have-account mt-5">
+            <p>Already have an account? <a routerLink="/login">Login</a></p>
+        </div>
+    </div>
+
+
+    <!-- Registration Page HTML -->
+    <div *ngIf="selected" class="register-container mt-5">
+        <div class="register-box">
+            <h2>Register</h2>
+            <form #f="ngForm" (submit)="submitRegistrationForm(f)">
+                <div class="d-flex">
+                    <div class="input-group me-2">
+                        <label for="firstName">First Name</label>
+                        <input type="text" ngModel id="firstName" name="firstName" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" ngModel id="lastName" name="lastName" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" ngModel id="username" name="username" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" ngModel id="email" name="email" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" ngModel id="phone" name="phone" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="birthdate">Birthdate</label>
+                    <input type="date" ngModel id="birthdate" name="birthdate" required>
+                </div>
+
+                <div class="input-group d-none mb-3">
+                    <label for="role">Role</label>
+                    <input type="text" [(ngModel)]="roleValue" id="role" name="userRole" class="form-control" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="userState">User State</label>
+                    <select ngModel id="userState" name="userState" required>
+                        <option value="ACTIVE">Active</option>
+                        <option value="INACTIVE">Inactive</option>
+                        <!-- Add other states if needed -->
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" [(ngModel)]="password" id="password" name="password" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" [(ngModel)]="confirmPassword" id="confirmPassword" name="confirmPassword"
+                        required>
+                </div>
+
+                <div class="input-group">
+                    <label for="image">Profile Image</label>
+                    <input type="file" (change)="onImageSelected($event)" id="image" name="image" accept="image/*">
+                </div>
+
+                <div class="register-actions">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+
+                <div class="have-account">
+                    <p>Already have an account? <a routerLink="/login">Login</a></p>
+                </div>
+            </form>
+
+        </div>
     </div>
 </div>
