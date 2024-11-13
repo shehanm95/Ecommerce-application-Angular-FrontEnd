@@ -6,8 +6,6 @@ import { ProfileComponent } from './user/profile/profile.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { AdminGard, AuthGard, SellerGuard } from './service/auth.service';
 import { RegisterAdminComponent } from './admin/register-admin/register-admin.component';
-import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { AddProductComponent } from './product/add-product/add-product.component';
 import { AdminDashboardComponent } from './dboards/admin/admin-dashboard/admin-dashboard.component';
 import { AdminStaticsComponent } from './dboards/admin/admin-statics/admin-statics.component';
 import { AdminMessagesComponent } from './dboards/admin/admin-messages/admin-messages.component';
@@ -18,13 +16,17 @@ import { SellerMessagesComponent } from './dboards/seller/seller-messages/seller
 import { SellerAddProductComponent } from './dboards/seller/seller-add-product/seller-add-product.component';
 import { SellerOrdersComponent } from './dboards/seller/seller-orders/seller-orders.component';
 import { SellerProductsComponent } from './dboards/seller/seller-products/seller-products.component';
-import { SellerDashboardComponent } from './seller/seller-dashboard/seller-dashboard.component';
+import { SellerDashboardComponent } from './dboards/seller/seller-dashoard/seller-dashoard.component';
+import { CartComponent } from './cart/cart/cart.component';
+import { SellerAddCategoryComponent } from './dbords/seller/seller-add-category/seller-add-category.component';
 
 export const routes: Routes = [
     { path: "register", component: RegisterComponent },
     { path: "login", component: LoginComponent },
     { path: "products", component: ProductListComponent, },
     { path: "register/admin", component: RegisterAdminComponent },
+
+
 
     //auth
     { path: "profile", component: ProfileComponent, canActivate: [AuthGard] },
@@ -50,6 +52,10 @@ export const routes: Routes = [
                 path: "users",
                 component: AdminUsersComponent
             },
+            {
+                path: "addCategory",
+                component: SellerAddCategoryComponent
+            },
         ]
     },
 
@@ -67,6 +73,7 @@ export const routes: Routes = [
                 path: "addProducts",
                 component: SellerAddProductComponent
             },
+
             {
                 path: "orders",
                 component: SellerOrdersComponent
@@ -78,9 +85,10 @@ export const routes: Routes = [
         ]
     },
 
+    //buyer
 
-    //sellers
-    { path: "addProduct", component: AddProductComponent, canActivate: [SellerGuard] },
+    { path: "cart", component: CartComponent },
+
 
 
 

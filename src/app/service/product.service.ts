@@ -15,15 +15,31 @@ export class ProductService {
   getAllProducts(): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(this.url + "/all")
   }
-  addProduct(product: { productName: string; price: number; category: string }, imageFile: File): Observable<IProduct> {
+  addProduct(
+    product: {
+      productName: string;
+      price: number;
+      category: string;
+      sellerId: number;
+      rate: number;
+      rateCount: number;
+      productCount: number
+    },
+    imageFile: File
+  ): Observable<IProduct> {
     const formData = new FormData();
     formData.append('productName', product.productName);
     formData.append('price', product.price.toString());
     formData.append('category', product.category);
+    formData.append('sellerId', product.sellerId.toString());
+    formData.append('rate', product.rate.toString());
+    formData.append('rateCount', product.rateCount.toString());
+    formData.append('productCount', product.productCount.toString());
     formData.append('imageFile', imageFile);
 
     return this.http.post<IProduct>(`${this.url}/add`, formData);
   }
+
 
   getProductById(id: number): Observable<IProduct> {
     return this.http.get<IProduct>(`${this.url}/get/${id}`);
@@ -51,11 +67,22 @@ export class ProductService {
 }
 
 export interface IProduct {
-
   id: number;
   productName: string;
   price: number;
   category: string;
   productImageLink: string;
+  sellerId: number;
+  rate?: number;
+  rateCount?: number;
+  productState?: ProductState;
+  productCount?: number;
+  productCode?: string;
+  isNew?: boolean;
 }
 
+export enum ProductState {
+  InStock = 'InStock',
+  OutOfStock = 'OutOfStock',
+  Removed = 'Removed'
+}

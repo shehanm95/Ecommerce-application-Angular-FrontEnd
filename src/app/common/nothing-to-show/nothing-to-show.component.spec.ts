@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardComponent } from './dashboard.component';
+import { NothingToShowComponent } from './nothing-to-show.component';
 
-describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+describe('NothingToShowComponent', () => {
+  let component: NothingToShowComponent;
+  let fixture: ComponentFixture<NothingToShowComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DashboardComponent]
+      imports: [NothingToShowComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DashboardComponent);
+    fixture = TestBed.createComponent(NothingToShowComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

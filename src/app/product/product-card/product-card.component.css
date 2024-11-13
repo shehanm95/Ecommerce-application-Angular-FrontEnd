@@ -49,6 +49,13 @@
     color: #28a745;
 }
 
+.myCard {
+    width: 300px;
+    display: inline-block;
+    margin: 5px;
+
+}
+
 .badge-top-rated {
     background-color: #f1c40f;
     color: #000;

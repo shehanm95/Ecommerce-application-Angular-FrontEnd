@@ -1,0 +1,8 @@
+.minHeight {
+    min-height: 400px;
+}
+
+.imageBorder {
+    margin-top: 10px;
+    border: 3px solid rgb(44, 44, 161);
+}

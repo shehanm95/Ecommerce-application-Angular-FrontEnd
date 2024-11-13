@@ -48,6 +48,7 @@ export class UserService {
       }
     });
   }
+
   login(form: any) {
     this.http.post<IUser>(this.url + "/login", form).subscribe({
       next: (loggedInUser) => {

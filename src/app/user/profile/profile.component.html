@@ -1,8 +1,8 @@
-<section style="background-color: #eee;">
-    <div class="container py-5">
+<section class="mt-5 vh-100" style="background-color: #eee;">
+    <div class=" container py-5">
         <div class="row">
             <div class="col">
-                <nav aria-label="breadcrumb" class="bg-body-tertiary rounded-3 p-3 mb-4">
+                <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">User Profile</li>
@@ -12,83 +12,88 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-4">
-                <div class="card mb-4">
-                    <div class="card-body text-center">
-                        <img *ngIf="!user?.imageLink"
-                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                            alt="avatar" class="rounded-circle img-fluid" style="width: 150px;  height: 150px;">
+            <!-- Profile Image and Info Card -->
+            <div class="col-lg-4 minHeight">
+                <div class="card mb-4 minHeight shadow-sm">
+                    <div class="card-body text-center d-flex align-items-center flex-column">
+                        <div class="imgHolder rounded-circle img-fluid mb-3 overflow-hidden imageBorder"
+                            style="width: 150px; height: 150px;">
+                            <img [src]="user?.imageLink || fallbackImage" alt="avatar" class=" img-fluid mb-3"
+                                style="width: 150px; min-height: 150px;" (error)="onImageError($event)">
 
-                        <img *ngIf="user?.imageLink" src="{{user?.imageLink}}" alt="avatar"
-                            class="rounded-circle img-fluid" style="width: 150px; height: 150px;">
+                        </div>
 
+
+                        <h5 class="my-3">{{ user?.firstName }} {{ user?.lastName }}</h5>
                         <p class="text-muted mb-1">{{ user?.username }}</p>
-                        <h5 class="my-3">{{ user?.firstName }} {{user?.lastName}}</h5>
                         <p class="text-muted mb-4">{{ user?.email }}</p>
-                        <div class="d-flex justify-content-center mb-2">
-                            <button type="button" class="btn btn-outline-primary ms-1">Show My Orders</button>
+                        <div class="d-flex justify-content-center">
+                            <button type="button" (click)="loadDashboard()" class="btn btn-outline-primary">Show My Dash
+                                Board</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-8">
-                <div class="card mb-4">
+            <!-- User Details Card -->
+            <div class="col-lg-8 ">
+                <div class="card mb-4 shadow-sm minHeight">
                     <div class="card-body">
-
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">ID </p>
+                        <!-- User Information Rows -->
+                        <div class="row mb-3">
+                            <div class="col-sm-4 text-secondary">
+                                <strong>ID</strong>
                             </div>
-                            <div class="col-sm-9">
+                            <div class="col-sm-8">
                                 <p class="text-muted mb-0">{{ user?.id }}</p>
                             </div>
                         </div>
                         <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Full Name</p>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 text-secondary">
+                                <strong>Full Name</strong>
                             </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">{{ user?.firstName }} {{user?.lastName}}</p>
+                            <div class="col-sm-8">
+                                <p class="text-muted mb-0">{{ user?.firstName }} {{ user?.lastName }}</p>
                             </div>
                         </div>
                         <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Email</p>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 text-secondary">
+                                <strong>Email</strong>
                             </div>
-                            <div class="col-sm-9">
+                            <div class="col-sm-8">
                                 <p class="text-muted mb-0">{{ user?.email }}</p>
                             </div>
                         </div>
                         <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Username</p>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 text-secondary">
+                                <strong>Username</strong>
                             </div>
-                            <div class="col-sm-9">
+                            <div class="col-sm-8">
                                 <p class="text-muted mb-0">{{ user?.username }}</p>
                             </div>
                         </div>
                         <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">User Role</p>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 text-secondary">
+                                <strong>User Role</strong>
                             </div>
-                            <div class="col-sm-9">
+                            <div class="col-sm-8">
                                 <p class="text-muted mb-0">{{ user?.userRole }}</p>
                             </div>
                         </div>
-                        <hr>
                     </div>
                 </div>
-                <button class="btn btn-warning float-end" (click)="logout()">Log Out</button>
-                <button class="btn btn-danger float-end" (click)="deleteAccount()">Delete My Account</button>
+
+                <!-- Action Buttons -->
+                <div class="d-flex justify-content-end gap-2">
+                    <button class="btn btn-warning" (click)="logout()">Log Out</button>
+                    <button class="btn btn-danger" (click)="deleteAccount()">Delete My Account</button>
+                </div>
             </div>
         </div>
     </div>
+
 </section>
-<admin-dashboard *ngIf="user?.userRole== 'ADMIN' "></admin-dashboard>
-<app-seller-dashboard *ngIf="user?.userRole== 'SELLER' "></app-seller-dashboard>
-<app-buyer-dashboard *ngIf="user?.userRole== 'BUYER' "></app-buyer-dashboard>

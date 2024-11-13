@@ -1,0 +1,41 @@
+<div class="container mt-5 addCategoryComp">
+    <h2>Add New Category</h2>
+
+    <!-- Success or error message -->
+    <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+    <!-- Category input and button -->
+    <div class="input-group mt-2 mb-3">
+        <input type="text" #categoryInput class="form-control w-75" placeholder="Enter category" maxlength="16" />
+        <button class="btn btn-primary ms-1" (click)="addCategory(categoryInput)">Add Category</button>
+    </div>
+
+    <!-- Categories display with clickable tags -->
+    <div id="categoriesContainer" class="mt-3">
+        <span *ngFor="let category of categories" class="category-tag"
+            [class.selected]="category.name === selectedCategory?.name" (click)="selectCategory(category)">
+            {{ category.name }}
+            <span class="remove-btn" (click)="removeCategory(category)">×</span>
+        </span>
+    </div>
+
+    <!-- Sub-category input and button -->
+    <hr class="m-3">
+    <h4>Add Subcategory for: <span>{{ selectedCategory?.name || 'None Selected' }}</span></h4>
+    <div class="input-group mt-2 mb-3">
+        <input type="text" #subCategoryInput class="form-control w-75" placeholder="Enter sub category"
+            [disabled]="!selectedCategory" />
+        <button class="btn btn-primary ms-1" (click)="addSubCategory(subCategoryInput)" [disabled]="!selectedCategory">
+            Add Subcategory
+        </button>
+    </div>
+
+    <!-- Subcategories display -->
+    <div id="subCategoriesContainer" class="mt-3">
+        <span *ngFor="let sub of selectedCategory?.subCategories" class="subcategory-tag">
+            {{ sub }}
+            <span class="remove-btn" (click)="removeSubCategory(sub)">×</span>
+        </span>
+    </div>
+</div>
