@@ -1,99 +1,65 @@
 <div class="vh-100 w-100 container-fluid d-flex justify-content-center align-items-center check">
     <div class="container check">
         <h2>Add Product</h2>
-        <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+        <div class="d-flex">
+            <img *ngIf="imagePreview" [src]="imagePreview" alt="Image Preview" class="img-thumbnail mt-3"
+                style="max-width: 100%; height: auto;" />
+            <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
 
-            <!-- Product Name -->
-            <div class="form-group">
-                <label for="productName">Product Name</label>
-                <input type="text" id="productName" class="form-control" name="productName" ngModel required>
-            </div>
+                <!-- Product Name -->
+                <div class="form-group">
+                    <label for="productName">Product Name</label>
+                    <input type="text" id="productName" class="form-control" name="productName" ngModel required>
+                </div>
 
-            <!-- Price -->
-            <div class="form-group">
-                <label for="price">Price ($)</label>
-                <input type="number" id="price" class="form-control" name="price" ngModel required>
-            </div>
+                <!-- Price -->
+                <div class="form-group">
+                    <label for="price">Price ($)</label>
+                    <input type="number" id="price" class="form-control" name="price" ngModel required>
+                </div>
 
-            <!-- Product Category -->
-            <div class="form-group mb-3">
-                <label for="category">Product Category</label>
-                <select id="category" name="category" class="form-control" ngModel required>
-                    <option *ngFor="let category of categories" [value]="category.id">
-                        {{ category.name }}
-                    </option>
-                </select>
-            </div>
+                <!-- Product Category -->
+                <div class="form-group mb-3">
+                    <label for="category">Product Category</label>
+                    <select id="category" name="category" class="form-control" (change)="LoadSubCategories()"
+                        [(ngModel)]="selectedCategory" required>
+                        <option *ngFor="let category of categories" [value]="category.id">
+                            {{ category.name }}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="subCategory">Sub Category</label>
+                    <select id="subCategory" name="subCategory" class="form-control" ngModel required>
+                        <option *ngFor="let subCategory of subCategories$ | async" [value]="subCategory.id">
+                            {{ subCategory.subCategoryName }}
+                        </option>
+                    </select>
+                </div>
 
-            <!-- Seller ID -->
-            <div class="form-group">
-                <label for="sellerId">Seller ID</label>
-                <input type="number" id="sellerId" class="form-control" name="sellerId" [ngModel]="userId" required>
-            </div>
+                <!-- Seller ID -->
+                <div class="form-group d-none">
+                    <label for="sellerId">Seller ID</label>
+                    <input type="number" id="sellerId" class="form-control" name="sellerId" [ngModel]="userId" required>
+                </div>
 
-            <!-- Product Rate -->
-            <div class="form-group">
-                <label for="rate">Product Rate</label>
-                <input type="number" step="0.1" id="rate" class="form-control" name="rate" ngModel required>
-            </div>
 
-            <!-- Rate Count -->
-            <div class="form-group">
-                <label for="rateCount">Rate Count</label>
-                <input type="number" id="rateCount" class="form-control" name="rateCount" ngModel required>
-            </div>
+                <!-- Product Count -->
+                <div class="form-group">
+                    <label for="productCount">Product Count You Have</label>
+                    <input type="number" id="productCount" class="form-control" name="productCount" ngModel required>
+                </div>
 
-            <!-- Product Count -->
-            <div class="form-group">
-                <label for="productCount">Product Count</label>
-                <input type="number" id="productCount" class="form-control" name="productCount" ngModel required>
-            </div>
+                <!-- Product Image Upload -->
+                <div class="form-group">
+                    <label for="imageUpload">Product Image Upload</label>
+                    <input type="file" ngModel id="imageUpload" class="form-control" name="imageFile"
+                        (change)="onImageSelect($event)" required>
+                </div>
 
-            <!-- Product Image Upload -->
-            <div class="form-group">
-                <label for="imageUpload">Product Image Upload</label>
-                <input type="file" ngModel id="imageUpload" class="form-control" name="imageFile"
-                    (change)="onImageSelect($event)" required>
-                <img *ngIf="imagePreview" [src]="imagePreview" alt="Image Preview" class="img-thumbnail mt-3"
-                    style="max-width: 100%; height: auto;" />
-            </div>
-
-            <!-- Submit Button -->
-            <button type="submit" class="btn btn-primary" [disabled]="productForm.invalid">Add Product</button>
-        </form>
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary" [disabled]="productForm.invalid">Add Product</button>
+            </form>
+        </div>
     </div>
 </div>
-
-
-
-<!-- <div class="vh-100 w-100 container-fluid d-flex justify-content-center align-items-center check">
-    <div class="container check">
-        <h2>Add Product</h2>
-        <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
-            <div class="form-group">
-                <label for="productName">Product Name</label>
-                <input type="text" id="productName" class="form-control" name="productName" ngModel required>
-            </div>
-
-            <div class="form-group">
-                <label for="price">Price ($)</label>
-                <input type="number" id="price" class="form-control" name="price" ngModel required>
-            </div>
-
-            <div class="form-group">
-                <label for="category">Product Category</label>
-                <input type="text" id="category" class="form-control" name="category" ngModel required>
-            </div>
-
-            <div class="form-group">
-                <label for="imageUpload">Product Image Upload</label>
-                <input type="file" ngModel id="imageUpload" class="form-control" name="productImage"
-                    (change)="onImageSelect($event)" required>
-                <img *ngIf="imagePreview" [src]="imagePreview" alt="Image Preview" class="img-thumbnail mt-3"
-                    style="max-width: 100%; height: auto;" />
-            </div>
-
-            <button type="submit" class="btn btn-primary" [disabled]="productForm.invalid">Add Product</button>
-        </form>
-    </div>
-</div> -->

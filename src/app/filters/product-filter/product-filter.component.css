@@ -1,0 +1,65 @@
+.form-floating-placeholder {
+    position: relative;
+}
+
+.form-floating-placeholder label {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-110%);
+    font-size: 1rem;
+    transition: all 0.3s ease-in-out;
+    color: #6c757d;
+    padding: 0 5px 0 5px;
+    padding-top: 0;
+    line-height: 1;
+    margin-top: 5px;
+    background-color: rgb(248, 249, 250);
+}
+
+
+.form-floating-placeholder input:focus+label,
+.form-floating-placeholder input:not(:placeholder-shown)+label {
+    top: 0.3rem;
+    left: 1rem;
+    font-size: 0.75rem;
+    color: #495057;
+}
+
+.form-floating-placeholder input {
+    border: 1px solid #ced4da;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.form-floating-placeholder input:focus {
+    border-color: #ced4da;
+    box-shadow: none;
+}
+
+.btn-myLight {
+    background-color: #e0e1e1;
+    font-weight: 400;
+    padding: 2px 7px !important;
+}
+
+.btn-myLight-active {
+    background-color: #839ede;
+    font-weight: 400;
+    padding: 2px 7px !important;
+}
+
+.btn-myLight-active:hover {
+    background-color: #6488dd;
+    font-weight: 400;
+}
+
+.btn-myLight:hover {
+    background-color: #cacaca;
+}
+
+
+.filterIcon i {
+    font-size: 2rem;
+    font-weight: bold;
+}

@@ -1,4 +1,7 @@
-<p>product-list works!</p>
-<div class="mt-5 pt-5 container d-flex justify-content-around flex-wrap align-items-center">
-    <app-product-card *ngFor="let product of products |async" [product]="product"></app-product-card>
+<div class="mt-5 pt-5 ">
+    <app-product-filter (onFilterObjCreated)="onFilterObjectCreated($event)"></app-product-filter>
+    <div class="container d-flex justify-content-around flex-wrap align-items-center">
+
+        <app-product-card *ngFor="let product of products |async" [product]="product"></app-product-card>
+    </div>
 </div>

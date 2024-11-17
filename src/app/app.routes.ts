@@ -18,7 +18,7 @@ import { SellerOrdersComponent } from './dboards/seller/seller-orders/seller-ord
 import { SellerProductsComponent } from './dboards/seller/seller-products/seller-products.component';
 import { SellerDashboardComponent } from './dboards/seller/seller-dashoard/seller-dashoard.component';
 import { CartComponent } from './cart/cart/cart.component';
-import { SellerAddCategoryComponent } from './dbords/seller/seller-add-category/seller-add-category.component';
+import { SellerAddCategoryComponent } from './dboards/seller/seller-add-category/seller-add-category.component';
 
 export const routes: Routes = [
     { path: "register", component: RegisterComponent },

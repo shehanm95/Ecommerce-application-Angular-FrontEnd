@@ -1,14 +1,16 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { IProduct, ProductService } from '../../../service/product.service';
 import { Category, CategoryService } from '../../../service/category.service';
 import { IUser, UserService } from '../../../service/user.service';
+import { SubCategory, SubCategoryService } from '../../../service/sub-category.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-seller-add-product',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, AsyncPipe],
   templateUrl: './seller-add-product.component.html',
   styleUrl: './seller-add-product.component.css'
 })
@@ -16,18 +18,16 @@ export class SellerAddProductComponent implements OnInit {
   imagePreview: string | ArrayBuffer | null = null;
   productImage: File | null = null;
   categories: Category[] = [];
+  subCategories$?: Observable<SubCategory[]>;
   errorMessage: string | null = null;
   userId: number | undefined = 0;
+  selectedCategory?: number;
 
-  constructor(private categoryService: CategoryService, private productService: ProductService, private userService: UserService) {
-
-  }
+  constructor(private categoryService: CategoryService, private productService: ProductService, private userService: UserService, private subCategoryService: SubCategoryService) { }
 
   ngOnInit(): void {
     this.fetchCategories();
     this.userId = this.userService.getCurrentUser()?.id;
-
-    // Fetch categories when component is initialized
   }
 
   fetchCategories(): void {
@@ -40,6 +40,15 @@ export class SellerAddProductComponent implements OnInit {
         this.errorMessage = 'Failed to load categories. Please try again.';
       }
     });
+  }
+
+  LoadSubCategories() {
+    console.log('Selected Category ID:', this.selectedCategory);
+    if (this.selectedCategory) {
+      this.subCategories$ = this.subCategoryService.getSubCategoriesByCategory(this.selectedCategory);
+    }
+
+
   }
 
 
@@ -62,30 +71,26 @@ export class SellerAddProductComponent implements OnInit {
     console.log(this.productImage?.name);
 
 
-
-
-
     if (form.valid && this.productImage) {
-      const { productName, price, category, sellerId, rate, rateCount, productCount } = form.value;
+      const { productName, price, category, subCategory, sellerId, productCount } = form.value;
 
-      // Call service to add product
+
       this.productService.addProduct(
         {
           productName,
           price,
           category,
+          subCategory,
           sellerId,
-          rate,
-          rateCount,
           productCount
         },
         this.productImage
       ).subscribe({
         next: (response: IProduct) => {
           console.log('Product Added:', response);
-          form.reset(); // Reset the form after successful submission
-          this.imagePreview = null; // Clear image preview
-          this.productImage = null; // Clear selected file
+          form.reset();
+          this.imagePreview = null;
+          this.productImage = null;
         },
         error: (error: any) => {
           console.error('Error adding product:', error);

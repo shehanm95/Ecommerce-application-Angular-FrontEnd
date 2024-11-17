@@ -3,6 +3,7 @@ import { mainUrl } from './user.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { IProductFilterObj } from '../filters/product-filter/product-filter.component';
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +21,8 @@ export class ProductService {
       productName: string;
       price: number;
       category: string;
+      subCategory: string;
       sellerId: number;
-      rate: number;
-      rateCount: number;
       productCount: number
     },
     imageFile: File
@@ -31,9 +31,8 @@ export class ProductService {
     formData.append('productName', product.productName);
     formData.append('price', product.price.toString());
     formData.append('category', product.category);
+    formData.append('subCategory', product.subCategory);
     formData.append('sellerId', product.sellerId.toString());
-    formData.append('rate', product.rate.toString());
-    formData.append('rateCount', product.rateCount.toString());
     formData.append('productCount', product.productCount.toString());
     formData.append('imageFile', imageFile);
 
@@ -63,6 +62,15 @@ export class ProductService {
     return this.http.put<IProduct>(`${this.url}/edit/${id}`, formData);
   }
 
+  getProductsOnFilterObj(filterObj: IProductFilterObj): Observable<IProduct[]> {
+    return this.http.get<IProduct[]>(`${this.url}/search/${filterObj.text}/${filterObj.category}/${filterObj.subCategory}`,);
+  }
+
+
+
+
+
+
 
 }
 
@@ -70,7 +78,8 @@ export interface IProduct {
   id: number;
   productName: string;
   price: number;
-  category: string;
+  category: number;
+  subCategory: number;
   productImageLink: string;
   sellerId: number;
   rate?: number;

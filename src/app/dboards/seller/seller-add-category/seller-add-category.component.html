@@ -33,9 +33,30 @@
 
     <!-- Subcategories display -->
     <div id="subCategoriesContainer" class="mt-3">
-        <span *ngFor="let sub of selectedCategory?.subCategories" class="subcategory-tag">
-            {{ sub }}
-            <span class="remove-btn" (click)="removeSubCategory(sub)">×</span>
-        </span>
+
+        <!-- Error Message -->
+        <div *ngIf="subCategories$ | async as subCategories">
+            <!-- Error Message -->
+            <div *ngIf="errorMessage" class="error-message">
+                {{ errorMessage }} failed to load,
+            </div>
+
+            <!-- Check if subCategories is empty, only if no error -->
+            <div *ngIf="!errorMessage && subCategories.length === 0">No subcategories available.</div>
+
+            <!-- Display subcategories if they are present and no error -->
+            <div *ngIf="!errorMessage && subCategories.length > 0">
+                <span *ngFor="let sub of subCategories" class="subcategory-tag">
+                    {{ sub.subCategoryName }}
+                    <span class="remove-btn" (click)="removeSubCategory(sub.categoryId)">×</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- Separate error message if `subCategories$` fails to load at all -->
+        <div *ngIf="errorMessage && !(subCategories$ | async)" class="error-message">
+            {{ errorMessage }} failed to load
+        </div>
+
+
     </div>
-</div>
