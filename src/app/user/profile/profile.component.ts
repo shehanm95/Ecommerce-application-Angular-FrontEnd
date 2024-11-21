@@ -16,6 +16,9 @@ export class ProfileComponent implements OnInit {
 
   fallbackImage = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp';
 
+  onImageError(event: any): void {
+    event.target.src = this.fallbackImage;
+  }
 
 
 
@@ -40,9 +43,6 @@ export class ProfileComponent implements OnInit {
     this.user?.imageLink || this.fallbackImage;
   }
 
-  onImageError(event: any): void {
-    event.target.src = this.fallbackImage;
-  }
 
   loadDashboard() {
     switch (this.user?.userRole) {

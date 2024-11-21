@@ -13,8 +13,8 @@ export class ProductService {
   private url = mainUrl + "/products";
   constructor(private http: HttpClient, private router: Router) { }
 
-  getAllProducts(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(this.url + "/all")
+  getAllProducts(): Observable<IProductForCard[]> {
+    return this.http.get<IProductForCard[]>(this.url + "/all")
   }
   addProduct(
     product: {
@@ -62,16 +62,9 @@ export class ProductService {
     return this.http.put<IProduct>(`${this.url}/edit/${id}`, formData);
   }
 
-  getProductsOnFilterObj(filterObj: IProductFilterObj): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(`${this.url}/search/${filterObj.text}/${filterObj.category}/${filterObj.subCategory}`,);
+  getProductsOnFilterObj(filterObj: IProductFilterObj): Observable<IProductForCard[]> {
+    return this.http.get<IProductForCard[]>(`${this.url}/search/${filterObj.text}/${filterObj.category}/${filterObj.subCategory}`,);
   }
-
-
-
-
-
-
-
 }
 
 export interface IProduct {
@@ -88,6 +81,28 @@ export interface IProduct {
   productCount?: number;
   productCode?: string;
   isNew?: boolean;
+}
+
+export interface IProductForCard {
+  id: number;
+  productName: string;
+  price: number;
+  category: number;
+  subCategory: number;
+  productImageLink: string;
+  sellerId: number;
+  rate?: number;
+  rateCount?: number;
+  productState?: ProductState;
+  productCount?: number;
+  productCode?: string;
+  isNew?: boolean;
+  sellerDetails: SellerNameAndImg
+}
+
+export interface SellerNameAndImg {
+  sellerName: string;
+  imageLink: string;
 }
 
 export enum ProductState {

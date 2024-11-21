@@ -1,4 +1,4 @@
-<section class="mt-5 vh-100" style="background-color: #eee;">
+<section class="pt-5 vh-100" style="background-color: #eee;">
     <div class=" container py-5">
         <div class="row">
             <div class="col">
@@ -18,7 +18,7 @@
                     <div class="card-body text-center d-flex align-items-center flex-column">
                         <div class="imgHolder rounded-circle img-fluid mb-3 overflow-hidden imageBorder"
                             style="width: 150px; height: 150px;">
-                            <img [src]="user?.imageLink || fallbackImage" alt="avatar" class=" img-fluid mb-3"
+                            <img [src]="user?.imageLink" alt="avatar" class=" img-fluid mb-3"
                                 style="width: 150px; min-height: 150px;" (error)="onImageError($event)">
 
                         </div>

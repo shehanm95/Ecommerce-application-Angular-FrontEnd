@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { IProduct, ProductService } from '../../service/product.service';
+import { IProduct, IProductForCard, ProductService } from '../../service/product.service';
 import { Observable } from 'rxjs';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -17,7 +17,7 @@ export class ProductListComponent implements OnInit {
   // this.products = this.productService.getAllProducts();
 
 
-  products!: Observable<IProduct[]>;
+  products!: Observable<IProductForCard[]>;
 
   constructor(private productService: ProductService) { }
 

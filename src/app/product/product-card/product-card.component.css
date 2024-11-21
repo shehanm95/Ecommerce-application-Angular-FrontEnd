@@ -32,6 +32,22 @@
     font-weight: bold;
 }
 
+.sellerProfile .img {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    border: 2px solid rgb(0, 255, 0);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sellerProfile .img img {
+    height: 25px;
+    display: inline-block;
+}
+
 .rating {
     display: flex;
     align-items: center;

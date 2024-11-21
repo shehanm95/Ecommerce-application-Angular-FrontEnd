@@ -59,7 +59,4 @@ export class CartComponent implements OnInit {
     this.cartService.reduceProduct(cartItem);
 
   }
-
-
-
 }

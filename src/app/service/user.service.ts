@@ -90,7 +90,7 @@ export class UserService {
 }
 
 export interface IUser {
-  id?: number;
+  id: number;
   firstName: string;
   lastName: string;
   username: string;
