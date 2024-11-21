@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs'; // Adjust path if necessary
-import { mainUrl } from './user.service';
+import { MainUrl } from './user.service';
 @Injectable({
   providedIn: 'root'
 })
 export class SubCategoryService {
 
-  private url = mainUrl
+  private url = MainUrl
   private apiUrl = `${this.url}/subcategories`;
 
   constructor(private http: HttpClient) { }

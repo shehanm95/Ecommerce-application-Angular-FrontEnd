@@ -9,8 +9,8 @@
         <div class="d-flex">
             <div class="container d-flex">
                 <form class="form-floating-placeholder flex-grow-1">
-                    <input type="text" class="form-control bg-light" name="searchText" id="searchText"
-                        [(ngModel)]="searchText" (keyup)="onSearchTextChange()" id="search" placeholder="">
+                    <input type="text" class="form-control bg-light" name="searchText" [(ngModel)]="searchText"
+                        (keyup)="onSearchTextChange()" id="searchText" placeholder="">
                     <label for="searchText">Search here</label>
                 </form>
                 <button class="btn btn-primary ms-2">search</button>

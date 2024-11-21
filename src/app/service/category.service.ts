@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { mainUrl } from './user.service';
+import { MainUrl } from './user.service';
 import { SubCategory } from './sub-category.service';
 
 

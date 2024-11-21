@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { IUser, mainUrl, UserService } from '../../service/user.service';
+import { IUser, MainUrl, UserService } from '../../service/user.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
   }
 
   userService = inject(UserService);
-  mainUrl = mainUrl;
+  mainUrl = MainUrl;
 
 
   logout() {

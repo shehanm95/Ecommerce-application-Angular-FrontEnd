@@ -5,3 +5,11 @@
 .check {
     border: 1px solid red !important;
 }
+
+.displayOnHover {
+    opacity: 0;
+}
+
+.displayOnHover:hover {
+    opacity: 1 !important;
+}

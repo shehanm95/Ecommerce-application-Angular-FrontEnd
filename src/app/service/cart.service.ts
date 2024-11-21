@@ -2,7 +2,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { IProduct } from './product.service';
 import { C } from '@angular/cdk/keycodes';
 import { ToastrService } from 'ngx-toastr';
-import { mainUrl, UserService } from './user.service';
+import { MainUrl, UserService } from './user.service';
 import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from './local-storage.service';
 
@@ -11,8 +11,8 @@ import { LocalStorageService } from './local-storage.service';
 })
 export class CartService {
 
-  mainUrl = mainUrl;
-  url = mainUrl + "/orders";
+  mainUrl = MainUrl;
+  url = MainUrl + "/orders";
 
 
   constructor(private toaster: ToastrService, private http: HttpClient, private userService: UserService) { }
@@ -112,7 +112,7 @@ export class CartService {
     const orderDetails: IOrderDetail[] = this.cartItems.map((cartItem => {
       return {
         productId: cartItem.product.id,
-        sellerId:cartItem.product.sellerId,
+        sellerId: cartItem.product.sellerId,
         quantity: cartItem.quantity
       }
     }))

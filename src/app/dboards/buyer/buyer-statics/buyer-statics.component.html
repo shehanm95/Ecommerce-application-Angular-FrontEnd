@@ -1,0 +1,73 @@
+<main class=" ms-sm-auto px-md-4">
+    <div class="dashboard-header mb-4">
+        <h2>Dashboard</h2>
+    </div>
+
+    <!-- Dashboard Stats Cards -->
+    <div class="row mb-4">
+        <div class="col-lg-3 col-sm-6 mb-4">
+            <div class="card text-center">
+                <h5>New Users</h5>
+                <h2>{{allUsers.length | number: '4.0-0'}}</h2>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 mb-4">
+            <div class="card text-center">
+                <h5>Total Orders</h5>
+                <h2>200,521</h2>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 mb-4">
+            <div class="card text-center">
+                <h5>Products Sold</h5>
+                <h2>215,542</h2>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 mb-4">
+            <div class="card text-center">
+                <h5>Revenue</h5>
+                <h2>$677.89</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Table -->
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="d-none">
+                        <td>John Doe</td>
+                        <td>johnexample.com</td>
+                        <td>Software Engineer</td>
+                        <td><span class="status-active">Active</span></td>
+                        <td>Owner</td>
+                        <td></td>
+                    </tr>
+                    <tr *ngFor="let user of allUsers">
+                        <td>{{user.firstName}} {{user.lastName}}</td>
+                        <td>{{user.email}}</td>
+                        <td>27</td>
+                        <td><span class="status-active">{{user.userRole}}</span></td>
+                        <td>Owner</td>
+                        <td>
+                            <h6 (click)="editUser(user.id)" class="edit-btn">Edit</h6>
+                        </td>
+                    </tr>
+
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>

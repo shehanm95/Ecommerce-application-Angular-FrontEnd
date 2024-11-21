@@ -1,48 +1,42 @@
-<div class="adminDashboard container pt-5 vh-100 d-flex">
+<div class="adminDashboard container pt-5 vh-100  d-flex">
     <div class="d-flex flex-column flex-shrink-0 p-3 bg-light " style="width: 280px;">
         <a routerLink="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
             <svg class="bi me-2" width="40" height="32">
                 <use xlink:routerLink="#bootstrap"></use>
             </svg>
-            <span class="fs-4">Seller Features</span>
+            <span class="fs-4">Buyer Features</span>
         </a>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li>
-                <a routerLink="/seller/dashboard" class="nav-link link-dark" routerLinkActive="active"
+                <a routerLink="/buyer/dashboard" class="nav-link link-dark" routerLinkActive="active"
                     [routerLinkActiveOptions]="{ exact: true }">
                     <i class="bi bi-speedometer me-2"></i>
                     Statics
                 </a>
             </li>
             <li>
-                <a routerLink="/seller/dashboard/messages" class="nav-link link-dark" routerLinkActive="active"
+                <a routerLink="/buyer/dashboard/messages" class="nav-link link-dark" routerLinkActive="active"
                     [routerLinkActiveOptions]="{ exact: true }">
                     <i class="bi bi-envelope me-2"></i>
                     Messages
                 </a>
             </li>
             <li>
-                <a routerLink="/seller/dashboard/products" class="nav-link link-dark" routerLinkActive="active"
+                <a routerLink="/buyer/dashboard/products" class="nav-link link-dark" routerLinkActive="active"
                     [routerLinkActiveOptions]="{ exact: true }" aria-current="page">
                     <i class="bi bi-grid-fill me-2"></i>
                     My Products
                 </a>
             </li>
             <li>
-                <a routerLink="/seller/dashboard/orders" class="nav-link link-dark" routerLinkActive="active"
+                <a routerLink="/buyer/dashboard/orders" class="nav-link link-dark" routerLinkActive="active"
                     [routerLinkActiveOptions]="{ exact: true }">
                     <i class="bi bi-card-checklist me-2"></i>
                     Orders
                 </a>
             </li>
-            <li>
-                <a routerLink="/seller/dashboard/addProducts" class="nav-link link-dark" routerLinkActive="active"
-                    [routerLinkActiveOptions]="{ exact: true }">
-                    <i class="bi bi-box2-fill me-2"></i>
-                    Add Products
-                </a>
-            </li>
+
 
         </ul>
 

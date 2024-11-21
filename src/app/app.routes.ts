@@ -19,6 +19,9 @@ import { SellerProductsComponent } from './dboards/seller/seller-products/seller
 import { SellerDashboardComponent } from './dboards/seller/seller-dashoard/seller-dashoard.component';
 import { CartComponent } from './cart/cart/cart.component';
 import { SellerAddCategoryComponent } from './dboards/seller/seller-add-category/seller-add-category.component';
+import { BuyerDashboardComponent } from './dboards/buyer/buyer-dashboard/buyer-dashboard.component';
+import { BuyerOrdersComponent } from './dboards/buyer/buyer-orders/buyer-orders.component';
+import { BuyerStaticsComponent } from './dboards/buyer/buyer-statics/buyer-statics.component';
 
 export const routes: Routes = [
     { path: "register", component: RegisterComponent },
@@ -59,6 +62,8 @@ export const routes: Routes = [
         ]
     },
 
+    //seller
+
     {
         path: "seller/dashboard", component: SellerDashboardComponent, children: [
             {
@@ -88,6 +93,31 @@ export const routes: Routes = [
     //buyer
 
     { path: "cart", component: CartComponent },
+    {
+        path: "buyer/dashboard", component: BuyerDashboardComponent, children: [
+            {
+                path: "",
+                component: BuyerStaticsComponent
+            },
+            {
+                path: "messages",
+                component: SellerMessagesComponent
+            },
+            {
+                path: "addProducts",
+                component: SellerAddProductComponent
+            },
+
+            {
+                path: "orders",
+                component: BuyerOrdersComponent
+            },
+            {
+                path: "products",
+                component: SellerProductsComponent
+            },
+        ]
+    },
 
 
 

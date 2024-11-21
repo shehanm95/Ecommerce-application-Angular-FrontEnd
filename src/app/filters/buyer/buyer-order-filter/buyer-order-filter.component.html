@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h5>Your Orders</h5>
+        </div>
+        <div class="card-body">
+            <div class="btn-group" role="group" aria-label="Order Status">
+                <button type="button" class="btn"
+                    [ngClass]="{ 'btn-primary': selectedStatus === 'All', 'btn-outline-primary': selectedStatus !== 'All' }"
+                    (click)="selectStatus('All')">
+                    All
+                </button>
+                <button type="button" class="btn"
+                    [ngClass]="{ 'btn-primary': selectedStatus === 'Pending', 'btn-outline-primary': selectedStatus !== 'Pending' }"
+                    (click)="selectStatus('Pending')">
+                    Pending
+                </button>
+                <button type="button" class="btn"
+                    [ngClass]="{ 'btn-primary': selectedStatus === 'Shipped', 'btn-outline-primary': selectedStatus !== 'Shipped' }"
+                    (click)="selectStatus('Shipped')">
+                    Shipped
+                </button>
+                <button type="button" class="btn"
+                    [ngClass]="{ 'btn-primary': selectedStatus === 'Canceled', 'btn-outline-primary': selectedStatus !== 'Canceled' }"
+                    (click)="selectStatus('Canceled')">
+                    Canceled
+                </button>
+                <button type="button" class="btn"
+                    [ngClass]="{ 'btn-primary': selectedStatus === 'Completed', 'btn-outline-primary': selectedStatus !== 'Completed' }"
+                    (click)="selectStatus('Completed')">
+                    Completed
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

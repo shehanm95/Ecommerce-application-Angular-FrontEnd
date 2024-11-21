@@ -1,0 +1,17 @@
+/* When the link is active, change text and icon color to white */
+.nav-link.active,
+.nav-link.active i {
+    color: white !important;
+}
+
+/* Optional: to ensure that non-active links retain their original color */
+.nav-link {
+    color: #495057;
+    /* Use whatever color your normal text should have */
+}
+
+/* Optional: if you want to add a hover effect as well */
+.nav-link:hover {
+    color: #007bff;
+    /* Change color when hovered */
+}

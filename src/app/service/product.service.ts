@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { mainUrl } from './user.service';
+import { MainUrl } from './user.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -10,7 +10,7 @@ import { IProductFilterObj } from '../filters/product-filter/product-filter.comp
 })
 export class ProductService {
 
-  private url = mainUrl + "/products";
+  private url = MainUrl + "/products";
   constructor(private http: HttpClient, private router: Router) { }
 
   getAllProducts(): Observable<IProductForCard[]> {
@@ -63,7 +63,10 @@ export class ProductService {
   }
 
   getProductsOnFilterObj(filterObj: IProductFilterObj): Observable<IProductForCard[]> {
-    return this.http.get<IProductForCard[]>(`${this.url}/search/${filterObj.text}/${filterObj.category}/${filterObj.subCategory}`,);
+    return this.http.post<IProductForCard[]>(`${this.url}/filter`, filterObj);
+  }
+  getSellerDetails(sellerId: number | undefined): Observable<SellerNameAndImg | undefined> {
+    return this.http.get<SellerNameAndImg | undefined>(this.url + "/sellerDetails/" + sellerId);
   }
 }
 

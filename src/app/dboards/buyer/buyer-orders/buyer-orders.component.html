@@ -1,6 +1,4 @@
-<app-seller-order-filter></app-seller-order-filter>
-
-
+<app-buyer-order-filter></app-buyer-order-filter>
 <div class="orders" *ngIf="orders$">
     <div class="container mt-1 " *ngFor="let order of orders$ |async">
 
@@ -9,30 +7,30 @@
             <div class="card-header d-flex justify-content-between align-items-center">
                 <!-- Left Side -->
                 <div>
-                    <h6 class="d-inline-block ms-2"><span class="fw-bold"> {{order.sellerOrderId| orderID}}</span></h6>
-                    <p class="mb-0 text-muted d-inline-block ms-2"><span class="fw-bold">{{order.receivedDate}}</span>
-                    </p>
+                    <h6 class="d-inline-block ms-2"><span class="fw-bold"> {{order.orderId | orderID}}</span></h6>
+                    <p class="mb-0 text-muted d-inline-block ms-2"><span class="fw-bold">{{order.orderDate}}</span></p>
                 </div>
                 <!-- Right Side -->
                 <div class="text-end">
-                    <span class="badge bg-success d-inline-block ms-2 mb-1 p-2">{{order.orderStatus}}</span>
+                    <span class="badge bg-success d-inline-block ms-2 mb-1 p-2">{{order.status}}</span>
                     <h6 class="mb-0 text-muted d-inline-block ms-2 me-2 priceWidth"> <span
-                            class="fw-bold">${{order.orderAmount}}</span>
+                            class="fw-bold">${{order.totalAmount}}</span>
                     </h6>
-                    <span class="bg-light px-2 d-inline-block ms-2 mb-1"><i
-                            (click)="onClickShowDetails(order.sellerOrderId)" class="bi bi-chevron-down"></i></span>
+                    <span class="bg-light px-2 d-inline-block ms-2 mb-1"><i (click)="onClickShowDetails(order.orderId)"
+                            class="bi bi-chevron-down"></i></span>
                 </div>
             </div>
-            <div *ngIf="currentOrderId == order.sellerOrderId" class="card-body">
-                <div class="" *ngFor="let detail of order.sellerOrderDetailsDto">
+            <div *ngIf="currentOrderId == order.orderId" class="card-body">
+                <div class="" *ngFor="let detail of order.orderDetails">
                     <div class="fullDetailArea">
-                        <app-display-seller-detail [sellerDetail]="order.userNameAndImg"></app-display-seller-detail>
+                        <app-display-seller-detail
+                            [sellerDetail]="detail.product.sellerDetails"></app-display-seller-detail>
 
 
                         <!-- DETAIL AREA============================= -->
                         <div class="detail d-flex justify-content-between mt-1">
                             <div class="detailLeft">
-                                <p class="d-inline-block ms-2 detailproductNameWidth">{{detail.productId}}
+                                <p class="d-inline-block ms-2 detailproductNameWidth">{{detail.product.productName}}
                                 </p>
                                 <p class="d-inline-block ms-2 detailProductDodeWidth">{{detail.product.productCode}}</p>
                                 <p class="d-inline-block ms-2 detailQuantityWidth">X {{detail.quantity}}</p>

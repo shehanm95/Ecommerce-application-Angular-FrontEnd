@@ -1,16 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { IUser, UserService } from '../../service/user.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { IUser, UserService } from '../../../service/user.service';
 
 @Component({
   selector: 'app-buyer-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterModule],
   templateUrl: './buyer-dashboard.component.html',
   styleUrl: './buyer-dashboard.component.css'
 })
 export class BuyerDashboardComponent implements OnInit {
+
+  lastClickedLink: string = 'Statics'; // Default active link
+
+  setButtonAppearance(event: Event): void {
+    const target = event.target as HTMLElement;
+    // Capture the clicked link's text content, trimming any extra whitespace
+    this.lastClickedLink = target.innerText.trim();
+  }
 
   @Input() user?: string;
   constructor(private userService: UserService, private router: Router) { }

@@ -48,18 +48,6 @@ export class ProductFilterComponent {
     this.onFilterObjCreated.emit(this.filterObj);
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
 }
 export interface IProductFilterObj {
   text: string,
