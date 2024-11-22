@@ -17,9 +17,6 @@ import { DisplaySellerDetailComponent } from '../../../user/display-seller-detai
 })
 export class SellerOrdersComponent {
 
-
-
-
   orders$?: Observable<SellerOrderResponseDto[]>;
   currentOrderId: number = 0;
   constructor(private orderService: OrderService, private userService: UserService, private productService: ProductService) {

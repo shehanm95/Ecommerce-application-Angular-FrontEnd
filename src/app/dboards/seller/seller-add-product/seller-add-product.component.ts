@@ -1,16 +1,17 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { IProduct, ProductService } from '../../../service/product.service';
+import { IProduct, IProductForCard, ProductService } from '../../../service/product.service';
 import { Category, CategoryService } from '../../../service/category.service';
 import { IUser, UserService } from '../../../service/user.service';
 import { SubCategory, SubCategoryService } from '../../../service/sub-category.service';
 import { Observable } from 'rxjs';
+import { ProductAddCardComponent } from "../product-add-card/product-add-card.component";
 
 @Component({
   selector: 'app-seller-add-product',
   standalone: true,
-  imports: [CommonModule, FormsModule, AsyncPipe],
+  imports: [CommonModule, FormsModule, AsyncPipe, ProductAddCardComponent],
   templateUrl: './seller-add-product.component.html',
   styleUrl: './seller-add-product.component.css'
 })
@@ -22,13 +23,36 @@ export class SellerAddProductComponent implements OnInit {
   errorMessage: string | null = null;
   userId: number | undefined = 0;
   selectedCategory?: number;
+  user?: IUser | null;
 
   constructor(private categoryService: CategoryService, private productService: ProductService, private userService: UserService, private subCategoryService: SubCategoryService) { }
 
   ngOnInit(): void {
     this.fetchCategories();
+    this.user = this.userService.getCurrentUser();
     this.userId = this.userService.getCurrentUser()?.id;
   }
+
+  pendingProduct: IProductForCard = {
+    id: 0,
+    productName: "",
+    price: 0,
+    category: 0,
+    subCategory: 0,
+    productImageLink: "",
+    sellerId: 0,
+    rate: 0,
+    rateCount: 0,
+    productState: undefined,
+    productCount: undefined,
+    productCode: "",
+    isNew: true,
+    sellerDetails: {
+      sellerName: this.user ? (this.user?.firstName + this.user?.lastName) : "",
+      imageLink: this.user ? (this.user?.imageLink ? this.user?.imageLink : "") : ""
+    }
+
+  };
 
   fetchCategories(): void {
     this.categoryService.findAllCategories().subscribe({

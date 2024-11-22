@@ -1,3 +1,27 @@
 .priceWidth {
     width: 80px;
 }
+
+.detailproductNameWidth {
+    min-width: 140px;
+    display: inline-block !important;
+
+}
+
+.detailProductDodeWidth {
+    width: 100px;
+    display: inline-block !important;
+
+}
+
+.detailQuantityWidth {
+    width: 100px;
+    display: inline-block !important;
+
+}
+
+.detailPriceWidth {
+    width: 100px;
+    display: inline-block !important;
+
+}

@@ -59,7 +59,7 @@ export interface OrderResponseDto {
 
 export interface SellerOrderDetailResponseDto {
   sellerOrderDetailId: number;
-  productId: number;
+  product: IProductForCard;
   quantity: number;
 }
 

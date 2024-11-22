@@ -87,6 +87,10 @@ export class UserService {
     return user;
   }
 
+  public getAdminStatics(): Observable<IAdminStatics> {
+    return this.http.get<IAdminStatics>(this.url + "/adminStatics")
+  }
+
 }
 
 export interface IUser {
@@ -103,6 +107,13 @@ export interface IUser {
   createdDate?: Date;
   modifiedDate?: Date;
   imageLink?: string;
+}
+
+export interface IAdminStatics {
+  allUsersCount: number,
+  allOrdersCount: number,
+  soldProductCount: number,
+  totalRevenue: number
 }
 
 

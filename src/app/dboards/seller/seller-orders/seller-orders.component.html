@@ -24,15 +24,15 @@
                 </div>
             </div>
             <div *ngIf="currentOrderId == order.sellerOrderId" class="card-body">
+                <app-display-seller-detail [sellerDetail]="order.userNameAndImg"></app-display-seller-detail>
                 <div class="" *ngFor="let detail of order.sellerOrderDetailsDto">
                     <div class="fullDetailArea">
-                        <app-display-seller-detail [sellerDetail]="order.userNameAndImg"></app-display-seller-detail>
 
 
                         <!-- DETAIL AREA============================= -->
                         <div class="detail d-flex justify-content-between mt-1">
                             <div class="detailLeft">
-                                <p class="d-inline-block ms-2 detailproductNameWidth">{{detail.productId}}
+                                <p class="d-inline-block ms-2 detailproductNameWidth">{{detail.product.productName}}
                                 </p>
                                 <p class="d-inline-block ms-2 detailProductDodeWidth">{{detail.product.productCode}}</p>
                                 <p class="d-inline-block ms-2 detailQuantityWidth">X {{detail.quantity}}</p>

@@ -1,0 +1,23 @@
+.detailproductNameWidth {
+    width: 100px;
+    display: inline-block !important;
+
+}
+
+.detailProductDodeWidth {
+    width: 100px;
+    display: inline-block !important;
+
+}
+
+.detailQuantityWidth {
+    width: 100px;
+    display: inline-block !important;
+
+}
+
+.detailPriceWidth {
+    width: 100px;
+    display: inline-block !important;
+
+}

@@ -1,21 +1,23 @@
-<div class="vh-100 w-100 container-fluid d-flex justify-content-center align-items-center check">
-    <div class="container check">
+<div class="w-100 container-fluid d-flex justify-content-center align-items-center check">
+    <div class="flex-grow-1 w-100 container check">
         <h2>Add Product</h2>
-        <div class="d-flex">
-            <img *ngIf="imagePreview" [src]="imagePreview" alt="Image Preview" class="img-thumbnail mt-3"
-                style="max-width: 100%; height: auto;" />
-            <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+        <div class="d-flex align-items-center flex-grow-1 w-100">
+            <app-product-add-card [imageSrc]="imagePreview" [product]="pendingProduct"></app-product-add-card>
+            <!-- <img *ngIf="imagePreview" [src]="imagePreview" alt="Image Preview" class="img-thumbnail mt-3"
+                style="max-width: 100%; height: auto;" /> -->
+            <form class="flex-grow-1 ms-1" #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
 
                 <!-- Product Name -->
                 <div class="form-group">
                     <label for="productName">Product Name</label>
-                    <input type="text" id="productName" class="form-control" name="productName" ngModel required>
+                    <input type="text" id="productName" class="form-control" name="productName"
+                        [(ngModel)]="pendingProduct.productName" required>
                 </div>
-
                 <!-- Price -->
                 <div class="form-group">
                     <label for="price">Price ($)</label>
-                    <input type="number" id="price" class="form-control" name="price" ngModel required>
+                    <input type="number" id="price" class="form-control" name="price" [(ngModel)]="pendingProduct.price"
+                        required>
                 </div>
 
                 <!-- Product Category -->
@@ -58,7 +60,8 @@
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary" [disabled]="productForm.invalid">Add Product</button>
+                <button type="submit" class="btn btn-primary float-end mt-3" [disabled]="productForm.invalid">Add
+                    Product</button>
             </form>
         </div>
     </div>
