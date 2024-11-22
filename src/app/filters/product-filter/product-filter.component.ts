@@ -13,6 +13,11 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './product-filter.component.css'
 })
 export class ProductFilterComponent {
+  categoryShow = false;
+
+  showCategories() {
+    this.categoryShow = !this.categoryShow
+  }
 
   @Output() onFilterObjCreated = new EventEmitter()
   selectedSubCategoryId: number = 0;

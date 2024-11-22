@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SellerOrderFilterComponent } from "../../../filters/seller/seller-order-filter/seller-order-filter.component";
 import { CommonModule } from '@angular/common';
 import { OrderService, SellerOrderResponseDto } from '../../../service/order.service';
@@ -16,6 +16,7 @@ import { DisplaySellerDetailComponent } from '../../../user/display-seller-detai
   styleUrl: './seller-orders.component.css'
 })
 export class SellerOrdersComponent {
+  @Input() showFilters = true;
 
   orders$?: Observable<SellerOrderResponseDto[]>;
   currentOrderId: number = 0;

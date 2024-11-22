@@ -12,8 +12,8 @@ import { Observable } from 'rxjs';
   styleUrl: './admin-statics.component.css'
 })
 export class AdminStaticsComponent {
-  @Input() user?: string;
   adminStatics$: Observable<IAdminStatics>;
+  @Input() user?: string;
   constructor(private userService: UserService, private router: Router) {
     this.adminStatics$ = userService.getAdminStatics();
   }

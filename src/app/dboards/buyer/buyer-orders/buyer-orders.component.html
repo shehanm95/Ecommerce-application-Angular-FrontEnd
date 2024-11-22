@@ -1,4 +1,4 @@
-<app-buyer-order-filter></app-buyer-order-filter>
+<app-buyer-order-filter *ngIf="showFilters"></app-buyer-order-filter>
 <div class="orders" *ngIf="orders$">
     <div class="container mt-1 " *ngFor="let order of orders$ |async">
 

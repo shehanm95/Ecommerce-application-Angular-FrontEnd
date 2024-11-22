@@ -90,8 +90,17 @@ export class UserService {
   public getAdminStatics(): Observable<IAdminStatics> {
     return this.http.get<IAdminStatics>(this.url + "/adminStatics")
   }
+  public getSellerStatics(sellerId: number): Observable<ISellerStatic> {
+    return this.http.get<ISellerStatic>(this.url + "/sellerStatics/" + sellerId)
+  }
+  public getBuyerStatics(buyerId: number): Observable<IBuyerStatics> {
+    return this.http.get<IBuyerStatics>(this.url + "/buyerStatics/" + buyerId)
+  }
 
 }
+
+
+
 
 export interface IUser {
   id: number;
@@ -115,8 +124,16 @@ export interface IAdminStatics {
   soldProductCount: number,
   totalRevenue: number
 }
+export interface ISellerStatic {
+  allOrdersCount: number;
+  soldProductCount: number;
+  totalRevenue: number;
+}
 
-
-
+export interface IBuyerStatics {
+  allOrdersCount: number;
+  boughtProductCount: number;
+  totalSpent: number;
+}
 
 export const MainUrl: string = "http://localhost:8080"

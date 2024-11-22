@@ -1,1 +1,31 @@
-<p>seller-statics works!</p>
+<main class=" ms-sm-auto px-md-4">
+    <div class="dashboard-header mb-4">
+        <h2>Dashboard</h2>
+    </div>
+
+    <!-- Dashboard Stats Cards -->
+    <div class="row d-flex justify-content-around mb-4">
+        <div class="col-lg-3 col-sm-6 mb-4">
+            <div class="card text-center">
+                <h5>Total Orders</h5>
+                <h2>{{(sellerStatics$ | async)?.allOrdersCount | number: '4.0-0'}}</h2>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 mb-4">
+            <div class="card text-center">
+                <h5>Products Sold</h5>
+                <h2>{{(sellerStatics$ | async)?.soldProductCount| number: '4.0-0'}}</h2>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 mb-4">
+            <div class="card text-center">
+                <h5>Revenue</h5>
+                <h2>${{(sellerStatics$ | async)?.totalRevenue| number: '4.2-2'}}</h2>
+            </div>
+        </div>
+    </div>
+    <app-seller-orders [showFilters]="false"></app-seller-orders>
+
+
+
+</main>

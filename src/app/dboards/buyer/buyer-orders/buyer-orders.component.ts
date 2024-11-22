@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { OrderDetailResponseDto, OrderResponseDto, OrderService } from '../../../service/order.service';
 import { Observable, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -21,6 +21,7 @@ export class BuyerOrdersComponent {
 
   orders$?: Observable<OrderResponseDto[]>;
   currentOrderId: number = 0;
+  @Input() showFilters = true;
   constructor(private orderService: OrderService, private userService: UserService, private productService: ProductService) {
     this.orders$ = orderService.getOrdersByBuyer();
 

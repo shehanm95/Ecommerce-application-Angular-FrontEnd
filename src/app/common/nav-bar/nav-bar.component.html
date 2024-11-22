@@ -22,16 +22,14 @@
         <li class="nav-item">
           <a class="nav-link" (click)="changeMobile()" routerLink="/products">Contact</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="changeMobile()" routerLink="/users">Users</a>
-        </li>
+
         <li class="nav-item">
           <a class="nav-link" (click)="changeMobile()" routerLink="/about">About</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" (click)="changeMobile()" routerLink="/privacy">Privacy</a>
         </li>
-        <li class="nav-item position-relative">
+        <li *ngIf="user?.userRole == 'BUYER'" class="nav-item position-relative">
           <a class="nav-link" routerLink="/cart">
             <span class="material-symbols-outlined">shopping_cart</span>
             <span class="cart-badge p-0 m-0">{{cartItemCount}}</span>

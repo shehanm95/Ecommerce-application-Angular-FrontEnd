@@ -1,49 +1,51 @@
 <div class="whiteBar bg-light">
 
     <div class="container">
-        <div class=" d-flex justify-content-between ">
-            <h5>Filter Products</h5>
-            <div class="filterIcon"><i class="bi bi-sliders2 fw-bolder p-2"></i></div>
+        <div class=" d-flex align-items-center justify-content-between ">
+            <h5 class="p-0 m-0">Filter Products</h5>
+            <div class="filterIcon"><i (click)="showCategories()" class="bi bi-sliders2 fw-bolder p-2"></i></div>
         </div>
-        <hr>
-        <div class="d-flex">
-            <div class="container d-flex">
-                <form class="form-floating-placeholder flex-grow-1">
-                    <input type="text" class="form-control bg-light" name="searchText" [(ngModel)]="searchText"
-                        (keyup)="onSearchTextChange()" id="searchText" placeholder="">
-                    <label for="searchText">Search here</label>
-                </form>
-                <button class="btn btn-primary ms-2">search</button>
-            </div>
-        </div>
-
-        <hr>
-        <div class="slectors">
-            <div class=" border border-opacity-10 border-dark rounded p-2 mt-3">
-                <h5 class="text-dark">Categories</h5>
-                <hr>
-                <button (click)="onCategoryClicked(0)" class="btn-myLight btn bg-opacity-10 m-1"
-                    [ngClass]="{'btn-myLight-active': selectedCategoryId === 0}">Any</button>
-
-                <button *ngFor="let category of categories$ | async" (click)="onCategoryClicked(category.id)"
-                    class="btn-myLight btn bg-opacity-10 m-1"
-                    [ngClass]="{'btn-myLight-active': selectedCategoryId === category.id}">{{category.name}}</button>
-
-                <hr>
-                <div class="subCategories" *ngIf="selectedCategoryId != 0">
-                    <h5 class="text-dark">Sub Categories</h5>
-                    <hr>
-                    <button class="btn-myLight btn bg-opacity-10 m-1"
-                        [ngClass]="{'btn-myLight-active': selectedSubCategoryId == 0}"
-                        (click)="onSubCategoryClicked(0)">Any</button>
-
-                    <button *ngFor="let subCate of subCategories$ | async" class="btn-myLight btn bg-opacity-10 m-1"
-                        [ngClass]="{'btn-myLight-active': selectedSubCategoryId == subCate.id}"
-                        (click)="onSubCategoryClicked(subCate.id)">{{subCate.subCategoryName}}</button>
-
+        <hr class="pt-0 mt-0">
+        <div *ngIf="categoryShow" class="">
+            <div class="d-flex">
+                <div class="container d-flex">
+                    <form class="form-floating-placeholder flex-grow-1">
+                        <input type="text" class="form-control bg-light" name="searchText" [(ngModel)]="searchText"
+                            (keyup)="onSearchTextChange()" id="searchText" placeholder="">
+                        <label for="searchText">Search here</label>
+                    </form>
+                    <button class="btn btn-primary ms-2">search</button>
                 </div>
             </div>
 
+            <hr>
+            <div class="slectors">
+                <div class=" border border-opacity-10 border-dark rounded p-2 mt-3">
+                    <h5 class="text-dark">Categories</h5>
+                    <hr>
+                    <button (click)="onCategoryClicked(0)" class="btn-myLight btn bg-opacity-10 m-1"
+                        [ngClass]="{'btn-myLight-active': selectedCategoryId === 0}">Any</button>
+
+                    <button *ngFor="let category of categories$ | async" (click)="onCategoryClicked(category.id)"
+                        class="btn-myLight btn bg-opacity-10 m-1"
+                        [ngClass]="{'btn-myLight-active': selectedCategoryId === category.id}">{{category.name}}</button>
+
+                    <hr>
+                    <div class="subCategories" *ngIf="selectedCategoryId != 0">
+                        <h5 class="text-dark">Sub Categories</h5>
+                        <hr>
+                        <button class="btn-myLight btn bg-opacity-10 m-1"
+                            [ngClass]="{'btn-myLight-active': selectedSubCategoryId == 0}"
+                            (click)="onSubCategoryClicked(0)">Any</button>
+
+                        <button *ngFor="let subCate of subCategories$ | async" class="btn-myLight btn bg-opacity-10 m-1"
+                            [ngClass]="{'btn-myLight-active': selectedSubCategoryId == subCate.id}"
+                            (click)="onSubCategoryClicked(subCate.id)">{{subCate.subCategoryName}}</button>
+
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
