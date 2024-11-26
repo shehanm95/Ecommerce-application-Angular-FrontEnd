@@ -67,7 +67,7 @@ export class RegisterAdminComponent {
       }
 
 
-      console.log(formData);
+      formData.forEach(val => console.log(val))
       this.userService.registerAdmin(formData);
     } else {
       this.toaster.error("Form did not Filled Correctly", "Form Invalid");

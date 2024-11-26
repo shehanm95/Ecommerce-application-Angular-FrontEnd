@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { IProduct } from './product.service';
+import { IProduct, IProductForCard } from './product.service';
 import { C } from '@angular/cdk/keycodes';
 import { ToastrService } from 'ngx-toastr';
 import { MainUrl, UserService } from './user.service';
@@ -112,7 +112,7 @@ export class CartService {
     const orderDetails: IOrderDetail[] = this.cartItems.map((cartItem => {
       return {
         productId: cartItem.product.id,
-        sellerId: cartItem.product.sellerId,
+        sellerId: cartItem.product.seller.id,
         quantity: cartItem.quantity
       }
     }))

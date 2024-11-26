@@ -118,6 +118,7 @@ export interface IUser {
   imageLink?: string;
 }
 
+
 export interface IAdminStatics {
   allUsersCount: number,
   allOrdersCount: number,

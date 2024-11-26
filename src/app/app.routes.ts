@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { RegisterComponent } from './user/register/register.component';
-import { UserListComponent } from './user/user-list/user-list.component';
 import { LoginComponent } from './user/login/login.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
@@ -36,7 +35,6 @@ export const routes: Routes = [
     { path: "profile", component: ProfileComponent, canActivate: [AuthGard] },
 
     //admin
-    { path: "users", component: UserListComponent, canActivate: [AdminGard] },
     {
         path: "admin/dashboard", component: AdminDashboardComponent, children: [
             {

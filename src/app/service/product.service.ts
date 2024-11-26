@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { MainUrl } from './user.service';
+import { IUser, MainUrl } from './user.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { IProductFilterObj } from '../filters/product-filter/product-filter.component';
 
 @Injectable({
@@ -14,7 +14,12 @@ export class ProductService {
   constructor(private http: HttpClient, private router: Router) { }
 
   getAllProducts(): Observable<IProductForCard[]> {
-    return this.http.get<IProductForCard[]>(this.url + "/all")
+    let products = this.http.get(this.url + "/all")
+    products.subscribe({
+      next: data => console.log(data)
+    })
+
+    return products as Observable<IProductForCard[]>;
   }
   addProduct(
     product: {
@@ -36,7 +41,12 @@ export class ProductService {
     formData.append('productCount', product.productCount.toString());
     formData.append('imageFile', imageFile);
 
-    return this.http.post<IProduct>(`${this.url}/add`, formData);
+    let products = this.http.post(`${this.url}/add`, formData);
+    products.subscribe({
+      next: data => console.log(data)
+    });
+    const emptyList$ = of<IProduct>();
+    return emptyList$;
   }
 
 
@@ -71,20 +81,22 @@ export class ProductService {
 }
 
 export interface IProduct {
-  id: number;
-  productName: string;
-  price: number;
   category: number;
-  subCategory: number;
+  id: number;
+  isNew: boolean;
+  price: number;
+  productCode: string;
+  productCount: number;
   productImageLink: string;
-  sellerId: number;
-  rate?: number;
-  rateCount?: number;
-  productState?: ProductState;
-  productCount?: number;
-  productCode?: string;
-  isNew?: boolean;
+  productName: string;
+  productState: string;
+  rate: number;
+  rateCount: number;
+  subCategory: number;
+  seller: IUser;
 }
+
+
 
 export interface IProductForCard {
   id: number;
@@ -94,13 +106,31 @@ export interface IProductForCard {
   subCategory: number;
   productImageLink: string;
   sellerId: number;
-  rate?: number;
-  rateCount?: number;
-  productState?: ProductState;
-  productCount?: number;
-  productCode?: string;
-  isNew?: boolean;
-  sellerDetails: SellerNameAndImg
+  rate: number;
+  rateCount: number;
+  productState: ProductState;
+  productCount: number;
+  productCode: string;
+  isNew: boolean;
+  sellerDetails: SellerNameAndImg;
+  seller: IUser;
+}
+
+export interface IProductForCardCreator {
+  id: number;
+  productName: string;
+  price: number;
+  category: number;
+  subCategory: number;
+  productImageLink: string;
+  sellerId: number;
+  rate: number;
+  rateCount: number;
+  productState: ProductState;
+  productCount: number;
+  productCode: string;
+  isNew: boolean;
+  sellerDetails: SellerNameAndImg;
 }
 
 export interface SellerNameAndImg {

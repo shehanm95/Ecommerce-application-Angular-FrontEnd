@@ -19,6 +19,7 @@ export class RegisterComponent {
   confirmPassword = "";
   confirmationFocused = false;
   roleValue = "BUYER";
+  ACTIVE: string = 'ACTIVE';
 
   constructor(private userService: UserService, private toaster: ToastrService) { }
 

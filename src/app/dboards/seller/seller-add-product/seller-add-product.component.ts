@@ -1,7 +1,7 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { IProduct, IProductForCard, ProductService } from '../../../service/product.service';
+import { IProduct, IProductForCard, IProductForCardCreator, ProductService, ProductState } from '../../../service/product.service';
 import { Category, CategoryService } from '../../../service/category.service';
 import { IUser, UserService } from '../../../service/user.service';
 import { SubCategory, SubCategoryService } from '../../../service/sub-category.service';
@@ -33,7 +33,7 @@ export class SellerAddProductComponent implements OnInit {
     this.userId = this.userService.getCurrentUser()?.id;
   }
 
-  pendingProduct: IProductForCard = {
+  pendingProduct: IProductForCardCreator = {
     id: 0,
     productName: "",
     price: 0,
@@ -43,14 +43,14 @@ export class SellerAddProductComponent implements OnInit {
     sellerId: 0,
     rate: 0,
     rateCount: 0,
-    productState: undefined,
-    productCount: undefined,
+    productState: ProductState.InStock,
+    productCount: 0,
     productCode: "",
     isNew: true,
     sellerDetails: {
       sellerName: this.user ? (this.user?.firstName + this.user?.lastName) : "",
       imageLink: this.user ? (this.user?.imageLink ? this.user?.imageLink : "") : ""
-    }
+    },
 
   };
 

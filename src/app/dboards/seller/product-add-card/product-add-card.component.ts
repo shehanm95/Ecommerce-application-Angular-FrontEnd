@@ -1,5 +1,5 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
-import { IProductForCard } from '../../../service/product.service';
+import { IProductForCard, IProductForCardCreator } from '../../../service/product.service';
 import { CartService } from '../../../service/cart.service';
 import { IUser, UserService } from '../../../service/user.service';
 import { U } from '@angular/cdk/keycodes';
@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './product-add-card.component.css'
 })
 export class ProductAddCardComponent {
-  @Input() product!: IProductForCard;
+  @Input() product!: IProductForCardCreator;
   @Input() imageSrc: string | ArrayBuffer | null = null;
 
 

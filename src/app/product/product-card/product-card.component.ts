@@ -34,7 +34,9 @@ export class ProductCardComponent implements OnInit {
   }
 
   addToCart() {
-    this.cartService.addProduct(this.product);
-    console.log("added")
+    if (this.product.seller != null) {
+      this.cartService.addProduct(this.product);
+      console.log("added")
+    }
   }
 }
