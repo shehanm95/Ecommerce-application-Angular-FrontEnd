@@ -13,3 +13,11 @@
 .displayOnHover:hover {
     opacity: 1 !important;
 }
+
+form .ng-touched.ng-dirty.ng-invalid {
+    border: 2px solid red !important;
+}
+
+.ng-submitted .ng-invalid {
+    border: 2px solid red !important;
+}

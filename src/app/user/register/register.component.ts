@@ -20,6 +20,9 @@ export class RegisterComponent {
   confirmationFocused = false;
   roleValue = "BUYER";
   ACTIVE: string = 'ACTIVE';
+  userName: string = "";
+  isUserNameExist: boolean = false;
+  checkingtext?: string;
 
   constructor(private userService: UserService, private toaster: ToastrService) { }
 
@@ -72,7 +75,7 @@ export class RegisterComponent {
       console.log(formData);
       this.userService.register(formData);
     } else {
-      this.toaster.error("Form did not Filled Correctly", "Form Invalid");
+      this.toaster.error("Please fill all the Required Fields", "Form Invalid");
     }
   }
 
@@ -84,5 +87,40 @@ export class RegisterComponent {
     this.roleValue = buyer ? "BUYER" : "SELLER";
     this.selected = true;
   }
+
+
+  checkUserName() {
+    this.checkingtext = "Checking username....";
+    console.log('called');
+
+    // Prevent unnecessary service calls for empty username
+    if (!this.userName) {
+      this.isUserNameExist = false;
+      this.checkingtext = "";
+      return;
+    }
+
+    this.userService.checkUserNameExist(this.userName).subscribe({
+      next: (res: boolean) => {
+        this.isUserNameExist = res;
+        this.checkingtext = res
+          ? `${this.userName}... is already taken.`
+          : `${this.userName}... is available.`;
+
+        // Use Angular binding instead of direct DOM manipulation
+        const checker = document.getElementById('checker') as HTMLElement;
+        if (checker) {
+          checker.className = res ? 'text-danger' : 'text-success';
+        }
+
+      },
+      error: (err) => {
+        console.error('Error checking username:', err);
+        this.checkingtext = "An error occurred while checking username.";
+        this.isUserNameExist = false;
+      }
+    });
+  }
+
 
 }

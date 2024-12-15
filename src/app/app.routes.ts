@@ -3,7 +3,7 @@ import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
-import { AdminGard, AuthGard, SellerGuard } from './service/auth.service';
+import { AdminGard, AuthGard, BuyerGuard, SellerGuard } from './service/auth.service';
 import { RegisterAdminComponent } from './admin/register-admin/register-admin.component';
 import { AdminDashboardComponent } from './dboards/admin/admin-dashboard/admin-dashboard.component';
 import { AdminStaticsComponent } from './dboards/admin/admin-statics/admin-statics.component';
@@ -24,8 +24,8 @@ import { BuyerStaticsComponent } from './dboards/buyer/buyer-statics/buyer-stati
 
 export const routes: Routes = [
     { path: "register", component: RegisterComponent },
-    { path: "login", component: LoginComponent },
-    { path: "products", component: ProductListComponent, },
+    { path: "login", component: LoginComponent, title: "ECommerce" },
+    { path: "products", component: ProductListComponent, title: "ECommerce" },
     { path: "register/admin", component: RegisterAdminComponent },
 
 
@@ -36,7 +36,7 @@ export const routes: Routes = [
 
     //admin
     {
-        path: "admin/dashboard", component: AdminDashboardComponent, children: [
+        path: "admin/dashboard", component: AdminDashboardComponent, canActivate: [AdminGard], children: [
             {
                 path: "",
                 component: AdminStaticsComponent
@@ -63,10 +63,11 @@ export const routes: Routes = [
     //seller
 
     {
-        path: "seller/dashboard", component: SellerDashboardComponent, children: [
+        path: "seller/dashboard", component: SellerDashboardComponent, canActivate: [SellerGuard], children: [
             {
                 path: "",
-                component: SellerStaticsComponent
+                component: SellerStaticsComponent,
+
             },
             {
                 path: "messages",
@@ -90,7 +91,7 @@ export const routes: Routes = [
 
     //buyer
 
-    { path: "cart", component: CartComponent },
+    { path: "cart", component: CartComponent, canActivate: [BuyerGuard] },
     {
         path: "buyer/dashboard", component: BuyerDashboardComponent, children: [
             {

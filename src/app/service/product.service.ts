@@ -21,6 +21,9 @@ export class ProductService {
 
     return products as Observable<IProductForCard[]>;
   }
+
+
+
   addProduct(
     product: {
       productName: string;
@@ -41,12 +44,7 @@ export class ProductService {
     formData.append('productCount', product.productCount.toString());
     formData.append('imageFile', imageFile);
 
-    let products = this.http.post(`${this.url}/add`, formData);
-    products.subscribe({
-      next: data => console.log(data)
-    });
-    const emptyList$ = of<IProduct>();
-    return emptyList$;
+    return this.http.post<IProduct>(`${this.url}/add`, formData)
   }
 
 
@@ -81,19 +79,19 @@ export class ProductService {
 }
 
 export interface IProduct {
-  category: number;
   id: number;
-  isNew: boolean;
-  price: number;
-  productCode: string;
-  productCount: number;
-  productImageLink: string;
   productName: string;
-  productState: string;
+  price: number;
+  category: number;
+  subCategory: number;
+  productImageLink: string;
+  seller: IUser;
   rate: number;
   rateCount: number;
-  subCategory: number;
-  seller: IUser;
+  productState: ProductState;
+  productCount: number;
+  productCode: string;
+  isNew: boolean;
 }
 
 
@@ -115,6 +113,7 @@ export interface IProductForCard {
   sellerDetails: SellerNameAndImg;
   seller: IUser;
 }
+
 
 export interface IProductForCardCreator {
   id: number;

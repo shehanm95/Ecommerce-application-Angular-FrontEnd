@@ -5,7 +5,7 @@
             <app-product-add-card [imageSrc]="imagePreview" [product]="pendingProduct"></app-product-add-card>
             <!-- <img *ngIf="imagePreview" [src]="imagePreview" alt="Image Preview" class="img-thumbnail mt-3"
                 style="max-width: 100%; height: auto;" /> -->
-            <form class="flex-grow-1 ms-1" #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+            <form id="addProductForm" class="flex-grow-1 ms-1" #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
 
                 <!-- Product Name -->
                 <div class="form-group">

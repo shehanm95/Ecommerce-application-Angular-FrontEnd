@@ -30,6 +30,7 @@ export class UserService {
       },
       error: (err) => {
         this.toaster.error("Invalid user details", "Invalid")
+        console.log(err);
       }
     });
   }
@@ -45,6 +46,7 @@ export class UserService {
       },
       error: (err) => {
         this.toaster.error("Invalid user details", "Invalid")
+        console.log(err);
       }
     });
   }
@@ -60,7 +62,8 @@ export class UserService {
         window.location.href = "/products"
       },
       error: (err) => {
-        this.toaster.error("Invalid username or password", "Invalid")
+        this.toaster.error("Invalid username or password", "Invalid");
+        console.log(err);
       }
     });
   }
@@ -95,6 +98,11 @@ export class UserService {
   }
   public getBuyerStatics(buyerId: number): Observable<IBuyerStatics> {
     return this.http.get<IBuyerStatics>(this.url + "/buyerStatics/" + buyerId)
+  }
+
+
+  checkUserNameExist(userName: string): Observable<boolean> {
+    return this.http.get<boolean>(this.url + "/isUserExist/" + userName)
   }
 
 }

@@ -40,9 +40,9 @@
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Title</th>
-                        <th>Status</th>
+
                         <th>Role</th>
+
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -50,17 +50,17 @@
                     <tr class="d-none">
                         <td>John Doe</td>
                         <td>johnexample.com</td>
-                        <td>Software Engineer</td>
+
                         <td><span class="status-active">Active</span></td>
-                        <td>Owner</td>
+
                         <td></td>
                     </tr>
                     <tr *ngFor="let user of allUsers">
                         <td>{{user.firstName}} {{user.lastName}}</td>
                         <td>{{user.email}}</td>
-                        <td>27</td>
+
                         <td><span class="status-active">{{user.userRole}}</span></td>
-                        <td>Owner</td>
+
                         <td>
                             <h6 (click)="editUser(user.id)" class="edit-btn">Edit</h6>
                         </td>

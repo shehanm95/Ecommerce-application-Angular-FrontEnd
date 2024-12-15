@@ -50,6 +50,10 @@ export class ProductFilterComponent {
 
   onSearchTextChange() {
     this.filterObj.text = this.searchText;
+    this.selectedCategoryId = 0;
+    this.filterObj.category = 0;
+    this.selectedSubCategoryId = 0;
+    this.filterObj.subCategory = 0;
     this.onFilterObjCreated.emit(this.filterObj);
   }
 

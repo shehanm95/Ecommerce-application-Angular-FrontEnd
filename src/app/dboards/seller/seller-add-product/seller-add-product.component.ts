@@ -7,6 +7,7 @@ import { IUser, UserService } from '../../../service/user.service';
 import { SubCategory, SubCategoryService } from '../../../service/sub-category.service';
 import { Observable } from 'rxjs';
 import { ProductAddCardComponent } from "../product-add-card/product-add-card.component";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-seller-add-product',
@@ -25,7 +26,12 @@ export class SellerAddProductComponent implements OnInit {
   selectedCategory?: number;
   user?: IUser | null;
 
-  constructor(private categoryService: CategoryService, private productService: ProductService, private userService: UserService, private subCategoryService: SubCategoryService) { }
+  constructor(private categoryService: CategoryService,
+    private productService: ProductService,
+    private userService: UserService,
+    private subCategoryService: SubCategoryService,
+    private toaster: ToastrService
+  ) { }
 
   ngOnInit(): void {
     this.fetchCategories();
@@ -110,14 +116,16 @@ export class SellerAddProductComponent implements OnInit {
         },
         this.productImage
       ).subscribe({
-        next: (response: IProduct) => {
+        next: (response) => {
           console.log('Product Added:', response);
-          form.reset();
+          this.toaster.success("Product Added Successfully...!", "Success")
+          form.resetForm();
           this.imagePreview = null;
           this.productImage = null;
         },
         error: (error: any) => {
           console.error('Error adding product:', error);
+          this.toaster.error("Something wrong with adding product...!", "Error.")
         }
       });
     } else {

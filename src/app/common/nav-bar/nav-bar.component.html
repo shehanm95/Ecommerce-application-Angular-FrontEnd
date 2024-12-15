@@ -42,7 +42,7 @@
           </a>
         </li>
         <li class="ms-4" *ngIf="!user">
-          <button (click)="toLogin()" class="btn btn-primary">Login</button>
+          <button (click)="toLogin()" [ngClass]="{'hider' : isNavbarCollapsed}" class="btn btn-primary">Login</button>
         </li>
       </ul>
     </div>

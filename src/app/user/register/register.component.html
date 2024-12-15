@@ -1,15 +1,17 @@
-<div class="d-flex justify-content-center align-items-center resposiveMargin vh-100">
+<div class="d-flex justify-content-center align-items-top p-5 resposiveMargin vh-100">
 
-    <div *ngIf="!selected" class="roleSelector col-md-6">
-        <h2 class="text-center">
-            I need to register As a....
-        </h2>
-        <div class="role-buttons d-flex justify-content-between mt-5">
-            <button type="button" class="role-btn" (click)="buyerSelected(true)">Buyer</button>
-            <button type="button" class="role-btn" (click)="buyerSelected(false)">Seller</button>
-        </div>
-        <div class="have-account mt-5">
-            <p>Already have an account? <a routerLink="/login">Login</a></p>
+    <div *ngIf="!selected" class="d-flex justify-content-center align-items-center w-100 resposiveMargin vh-100">
+        <div class="roleSelector col-md-6">
+            <h2 class="text-center">
+                I need to register As a....
+            </h2>
+            <div class="role-buttons d-flex justify-content-between mt-5">
+                <button type="button" class="role-btn" (click)="buyerSelected(true)">Buyer</button>
+                <button type="button" class="role-btn" (click)="buyerSelected(false)">Seller</button>
+            </div>
+            <div class="have-account mt-5">
+                <p>Already have an account? <a routerLink="/login">Login</a></p>
+            </div>
         </div>
     </div>
 
@@ -19,7 +21,7 @@
         <div class="register-box">
             <h2>Register</h2>
             <form #f="ngForm" (submit)="submitRegistrationForm(f)">
-                <div class="d-flex">
+                <div class="d-flex overflow-hidden">
                     <div class="input-group me-2">
                         <label for="firstName">First Name</label>
                         <input type="text" ngModel id="firstName" name="firstName" required>
@@ -33,8 +35,13 @@
 
                 <div class="input-group">
                     <label for="username">Username</label>
-                    <input type="text" ngModel id="username" name="username" required>
+                    <input type="text" (change)="checkUserName()" [(ngModel)]="userName" #userNameField="ngModel"
+                        id="username" name="username" class="form-control" required>
                 </div>
+
+                <p id="checker" *ngIf="isUserNameExist && userName?.trim() !== ''">
+                    {{checkingtext}}
+                </p>
 
                 <div class="input-group">
                     <label for="email">Email</label>
