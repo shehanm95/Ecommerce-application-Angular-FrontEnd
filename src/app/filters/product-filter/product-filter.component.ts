@@ -39,6 +39,8 @@ export class ProductFilterComponent {
     this.subCategories$ = this.subCategoryService.getSubCategoriesByCategory(categoryId);
     this.selectedCategoryId = categoryId;
     this.filterObj.category = categoryId;
+    this.selectedSubCategoryId = 0;
+    this.filterObj.subCategory = 0;
     this.onFilterObjCreated.emit(this.filterObj);
   }
 

@@ -39,11 +39,12 @@ export class NavBarComponent implements OnInit {
   }
 
   toLogin() {
-
+    this.changeMobile();
     this.router.navigate(['/login'])
   }
 
   goToProfile() {
+    this.changeMobile();
     this.router.navigate(["/profile"])
   }
 
