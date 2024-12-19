@@ -10,7 +10,7 @@ import { U } from '@angular/cdk/keycodes';
   providedIn: 'root'
 })
 export class UserService {
-  url = MainUrl + "/users";
+  url = MainBackendUrl + "/users";
   constructor(private http: HttpClient,
     private storageService: LocalStorageService,
     private router: Router,
@@ -80,7 +80,7 @@ export class UserService {
     this.storageService.logout();
   }
 
-  imageMainUrl = MainUrl;
+  imageMainUrl = MainBackendUrl;
   private setImageUrl(user: IUser): IUser {
 
     if (user.imageLink?.startsWith(this.imageMainUrl)) {
@@ -118,7 +118,7 @@ export interface IUser {
   email?: string;
   userRole: string;
   userState?: string;
-  password: string;
+  password?: string;
   phone?: string;
   birthdate?: Date;
   createdDate?: Date;
@@ -145,4 +145,4 @@ export interface IBuyerStatics {
   totalSpent: number;
 }
 
-export const MainUrl: string = "http://localhost:8080"
+export const MainBackendUrl: string = "http://localhost:8080"

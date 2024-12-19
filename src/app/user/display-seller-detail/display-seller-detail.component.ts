@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SellerNameAndImg } from '../../service/product.service';
-import { UserService } from '../../service/user.service';
+import { IUser, MainBackendUrl, UserService } from '../../service/user.service';
 
 @Component({
   selector: 'app-display-seller-detail',
@@ -9,6 +9,14 @@ import { UserService } from '../../service/user.service';
   templateUrl: './display-seller-detail.component.html',
   styleUrl: './display-seller-detail.component.css'
 })
-export class DisplaySellerDetailComponent {
-  @Input() sellerDetail?: SellerNameAndImg;
+export class DisplaySellerDetailComponent implements OnInit {
+  @Input() seller?: IUser;
+
+  mainUrl = MainBackendUrl;
+
+  ngOnInit(): void {
+    if (this.seller && !this.seller.imageLink?.includes("http")) {
+      this.seller.imageLink = this.mainUrl + this.seller.imageLink;
+    }
+  }
 }

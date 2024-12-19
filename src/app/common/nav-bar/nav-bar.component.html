@@ -7,7 +7,7 @@
     <a class="navbar-brand h2 fw-bolder ms-4" routerLink="/products">ECom</a>
 
     <!-- Toggler for mobile view -->
-    <button class="navbar-toggler" (click)="changeMobile()" type="button" aria-controls="navbarNav"
+    <button class="navbar-toggler" (click)="navBarCollapseToggle()" type="button" aria-controls="navbarNav"
       aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -17,20 +17,20 @@
       id="navbarNav">
       <ul [ngClass]="{'hider' : isNavbarCollapsed}" class="navbar-nav ms-lg-auto d-flex justify-content-center ">
         <li class="nav-item">
-          <a class="nav-link" (click)="changeMobile()" routerLink="products">Products</a>
+          <a class="nav-link" (click)="navBarCollapseToggle()" routerLink="products">Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="changeMobile()" routerLink="/products">Contact</a>
+          <a class="nav-link" (click)="navBarCollapseToggle()" routerLink="/products">Contact</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" (click)="changeMobile()" routerLink="/about">About</a>
+          <a class="nav-link" (click)="navBarCollapseToggle()" routerLink="/about">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="changeMobile()" routerLink="/privacy">Privacy</a>
+          <a class="nav-link" (click)="navBarCollapseToggle()" routerLink="/privacy">Privacy</a>
         </li>
         <li *ngIf="user?.userRole == 'BUYER'" class="nav-item position-relative">
-          <a class="nav-link" routerLink="/cart">
+          <a class="nav-link" (click)="goToCart()">
             <span class="material-symbols-outlined">shopping_cart</span>
             <span class="cart-badge p-0 m-0">{{cartItemCount}}</span>
           </a>

@@ -6,10 +6,10 @@
         <div class="d-flex justify-content-between align-items-center mb-2">
             <div class="sellerProfile p-0 d-flex">
                 <div class="img">
-                    <img [src]="product.sellerDetails.imageLink" alt="sellerProf">
+                    <img [src]="product.sellerDto.imageLink" alt="sellerProf">
                 </div>
                 <p class="d-inline-block ms-2 p-0 mb-0">
-                    {{ product.sellerDetails.sellerName }}
+                    {{ product.sellerDto.username }}
                 </p>
             </div>
             <span class="badge-top-rated">{{product.productState}}</span>

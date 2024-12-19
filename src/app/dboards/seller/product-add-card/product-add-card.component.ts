@@ -1,5 +1,5 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
-import { IProductForCard, IProductForCardCreator } from '../../../service/product.service';
+import { IProductForCardCreator } from '../../../service/product.service';
 import { CartService } from '../../../service/cart.service';
 import { IUser, UserService } from '../../../service/user.service';
 import { U } from '@angular/cdk/keycodes';

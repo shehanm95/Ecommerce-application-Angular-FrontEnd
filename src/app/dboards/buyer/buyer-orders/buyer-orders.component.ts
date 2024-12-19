@@ -16,9 +16,6 @@ import { UserService } from '../../../service/user.service';
   styleUrl: './buyer-orders.component.css'
 })
 export class BuyerOrdersComponent {
-
-
-
   orders$?: Observable<OrderResponseDto[]>;
   currentOrderId: number = 0;
   @Input() showFilters = true;

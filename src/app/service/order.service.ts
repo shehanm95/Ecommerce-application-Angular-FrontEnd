@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { IUser, MainUrl, UserService } from './user.service';
+import { IUser, MainBackendUrl, UserService } from './user.service';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
-import { IProduct, IProductForCard, SellerNameAndImg as UserNameAndImg } from './product.service';
+import { IProduct, SellerNameAndImg as UserNameAndImg } from './product.service';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class OrderService {
 
   currentUser?: IUser;
-  url = MainUrl + "/orders";
+  url = MainBackendUrl + "/orders";
   constructor(private userService: UserService,
     private toaster: ToastrService,
     private Http: HttpClient
@@ -43,9 +43,9 @@ export class OrderService {
 }
 
 export interface OrderDetailResponseDto {
-  product: IProductForCard;
+  product: IProduct;
   quantity: number;
-  sellerId: number;
+  seller: IUser;
 }
 
 export interface OrderResponseDto {
@@ -59,7 +59,7 @@ export interface OrderResponseDto {
 
 export interface SellerOrderDetailResponseDto {
   sellerOrderDetailId: number;
-  product: IProductForCard;
+  product: IProduct;
   quantity: number;
 }
 
@@ -71,16 +71,15 @@ export enum OrderStatus {
 }
 
 export interface SellerOrderResponseDto {
-  sellerOrderId: number;                      // Corresponds to Long in Java
-  sellerId: number;                           // Corresponds to Integer in Java
-  buyerId: number;                            // Corresponds to Integer in Java
-  orderAmount: number;                        // Corresponds to Double in Java
-  totalProducts: number;                      // Corresponds to Integer in Java
-  receivedDate: string;                       // Corresponds to LocalDateTime in Java (use ISO 8601 format)
-  finishedDate: string;                       // Corresponds to LocalDateTime in Java (use ISO 8601 format)
-  orderStatus: OrderStatus;                   // Enum for OrderStatus
-  sellerOrderDetailsDto: SellerOrderDetailResponseDto[]; // List of SellerOrderDetailResponseDto
-  buyerOrderId: number;                       // Corresponds to Long in Java
-  userNameAndImg: UserNameAndImg;             // Corresponds to UserNameAndImg class in Java
+  sellerOrderId: number;
+  seller: IUser;
+  buyer: IUser;
+  orderAmount: number;
+  totalProducts: number;
+  receivedDate: string;
+  finishedDate: string;
+  orderStatus: OrderStatus;
+  sellerOrderDetailsDto: SellerOrderDetailResponseDto[];
+  buyerOrderId: number;
 }
 

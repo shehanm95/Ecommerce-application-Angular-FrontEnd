@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IUser, MainUrl } from './user.service';
+import { IUser, MainBackendUrl } from './user.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
@@ -10,16 +10,17 @@ import { IProductFilterObj } from '../filters/product-filter/product-filter.comp
 })
 export class ProductService {
 
-  private url = MainUrl + "/products";
+  private url = MainBackendUrl + "/products";
   constructor(private http: HttpClient, private router: Router) { }
 
-  getAllProducts(): Observable<IProductForCard[]> {
+  getAllProducts(): Observable<IProduct[]> {
     let products = this.http.get(this.url + "/all")
     products.subscribe({
-      next: data => console.log(data)
+      next: data => console.log("product loaded"),
+      error: error => console.log(error)
     })
 
-    return products as Observable<IProductForCard[]>;
+    return products as Observable<IProduct[]>;
   }
 
 
@@ -70,8 +71,8 @@ export class ProductService {
     return this.http.put<IProduct>(`${this.url}/edit/${id}`, formData);
   }
 
-  getProductsOnFilterObj(filterObj: IProductFilterObj): Observable<IProductForCard[]> {
-    return this.http.post<IProductForCard[]>(`${this.url}/filter`, filterObj);
+  getProductsOnFilterObj(filterObj: IProductFilterObj): Observable<IProduct[]> {
+    return this.http.post<IProduct[]>(`${this.url}/filter`, filterObj);
   }
   getSellerDetails(sellerId: number | undefined): Observable<SellerNameAndImg | undefined> {
     return this.http.get<SellerNameAndImg | undefined>(this.url + "/sellerDetails/" + sellerId);
@@ -85,7 +86,7 @@ export interface IProduct {
   category: number;
   subCategory: number;
   productImageLink: string;
-  seller: IUser;
+  sellerDto: IUser;
   rate: number;
   rateCount: number;
   productState: ProductState;
@@ -94,25 +95,12 @@ export interface IProduct {
   isNew: boolean;
 }
 
-
-
-export interface IProductForCard {
-  id: number;
-  productName: string;
-  price: number;
-  category: number;
-  subCategory: number;
-  productImageLink: string;
-  sellerId: number;
-  rate: number;
-  rateCount: number;
-  productState: ProductState;
-  productCount: number;
-  productCode: string;
-  isNew: boolean;
-  sellerDetails: SellerNameAndImg;
-  seller: IUser;
+export interface SimpleSeller {
+  username: string;
+  imageLink: string;
 }
+
+
 
 
 export interface IProductForCardCreator {

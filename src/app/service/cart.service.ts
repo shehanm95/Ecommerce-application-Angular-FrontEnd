@@ -1,18 +1,16 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { IProduct, IProductForCard } from './product.service';
-import { C } from '@angular/cdk/keycodes';
+import { IProduct } from './product.service';
 import { ToastrService } from 'ngx-toastr';
-import { MainUrl, UserService } from './user.service';
+import { MainBackendUrl, UserService } from './user.service';
 import { HttpClient } from '@angular/common/http';
-import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  mainUrl = MainUrl;
-  url = MainUrl + "/orders";
+  mainUrl = MainBackendUrl;
+  url = MainBackendUrl + "/orders";
 
 
   constructor(private toaster: ToastrService, private http: HttpClient, private userService: UserService) { }
@@ -42,7 +40,7 @@ export class CartService {
         cartItem.quantity--;
       } else {
         let index = this.cartItems.indexOf(cartItem);
-        this.cartItems.splice(index);
+        this.cartItems.splice(index, 1);
       }
       this.getItemCount();
       this.cartChanged.emit(this.cartItems);
@@ -67,8 +65,15 @@ export class CartService {
   }
 
   removeFromCart(cartItem: CartItem) {
-    let index = this.cartItems.indexOf(cartItem);
-    this.cartItems.splice(index);
+    // Find the index of the item to remove
+    let index = this.cartItems.findIndex(item => item.product.id === cartItem.product.id);
+
+    // Remove the item if found
+    if (index !== -1) {
+      this.cartItems.splice(index, 1);
+    }
+    console.log(this.cartItems)
+    // Update item count and emit the change
     this.getItemCount();
     this.cartChanged.emit(this.cartItems);
   }
@@ -112,7 +117,7 @@ export class CartService {
     const orderDetails: IOrderDetail[] = this.cartItems.map((cartItem => {
       return {
         productId: cartItem.product.id,
-        sellerId: cartItem.product.seller.id,
+        sellerId: cartItem.product.sellerDto.id,
         quantity: cartItem.quantity
       }
     }))

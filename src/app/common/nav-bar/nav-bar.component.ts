@@ -13,7 +13,7 @@ import { CartItem, CartService } from '../../service/cart.service';
 })
 export class NavBarComponent implements OnInit {
   isNavbarCollapsed: boolean = true;
-  changeMobile() {
+  navBarCollapseToggle() {
     this.isNavbarCollapsed = !this.isNavbarCollapsed
     console.log(this.isNavbarCollapsed)
   }
@@ -29,8 +29,10 @@ export class NavBarComponent implements OnInit {
 
   }
 
-
-
+  goToCart() {
+    this.navBarCollapseToggle();
+    this.router.navigate(['/cart'])
+  }
 
   ngOnInit(): void {
     this.user = this.userService.getCurrentUser();
@@ -39,12 +41,12 @@ export class NavBarComponent implements OnInit {
   }
 
   toLogin() {
-    this.changeMobile();
+    this.navBarCollapseToggle();
     this.router.navigate(['/login'])
   }
 
   goToProfile() {
-    this.changeMobile();
+    this.navBarCollapseToggle();
     this.router.navigate(["/profile"])
   }
 

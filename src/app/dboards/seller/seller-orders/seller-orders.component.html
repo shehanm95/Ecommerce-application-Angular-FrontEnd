@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div *ngIf="currentOrderId == order.sellerOrderId" class="card-body">
-                <app-display-seller-detail [sellerDetail]="order.userNameAndImg"></app-display-seller-detail>
+                <app-display-seller-detail [seller]="order.buyer"></app-display-seller-detail>
                 <div class="" *ngFor="let detail of order.sellerOrderDetailsDto">
                     <div class="fullDetailArea">
 

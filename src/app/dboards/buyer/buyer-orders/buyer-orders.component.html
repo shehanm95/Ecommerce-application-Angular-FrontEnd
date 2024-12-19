@@ -23,8 +23,7 @@
             <div *ngIf="currentOrderId == order.orderId" class="card-body">
                 <div class="" *ngFor="let detail of order.orderDetails">
                     <div class="fullDetailArea">
-                        <app-display-seller-detail
-                            [sellerDetail]="detail.product.sellerDetails"></app-display-seller-detail>
+                        <app-display-seller-detail [seller]="detail.seller"></app-display-seller-detail>
 
 
                         <!-- DETAIL AREA============================= -->

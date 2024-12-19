@@ -1,7 +1,7 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { IProduct, IProductForCard, IProductForCardCreator, ProductService, ProductState } from '../../../service/product.service';
+import { IProduct, IProductForCardCreator, ProductService, ProductState } from '../../../service/product.service';
 import { Category, CategoryService } from '../../../service/category.service';
 import { IUser, UserService } from '../../../service/user.service';
 import { SubCategory, SubCategoryService } from '../../../service/sub-category.service';
